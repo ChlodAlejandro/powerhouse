@@ -1,0 +1,4 @@
+ErrorDocument 403 /error/404/
+
+Order deny,allow
+Deny from all

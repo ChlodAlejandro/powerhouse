@@ -1,0 +1,10 @@
+<Files "favicon.ico">
+    Options FollowSymLinks
+    Order allow,deny
+    Allow from all
+</Files>
+
+<Files "env.php">
+    Order deny,allow
+    Deny from all
+</Files>

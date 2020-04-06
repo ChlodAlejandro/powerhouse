@@ -1,5 +1,5 @@
 $('#uploadForm').onsubmit = () => {
-	$.post('apps/upload.php', $('#uploadForm').serialize());
+	$.post('interface/upload.php', $('#uploadForm').serialize());
 	return false;
 };
 

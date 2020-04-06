@@ -1,4 +1,6 @@
-The file `jquery-3.3.1.js` was originally written by the jQuery Foundation.
+The file `jquery-3.4.1.min.js` was originally written by the JS Foundation and its contributors.
+
+Its license was originally found here: https://jquery.org/license
 
 The file and its contents is licensed under the MIT license. A copy of the MIT license is provided below:
 
@@ -17,7 +19,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ===============================================================================
 
 The file `material-1.3.0.min.js` was originally created by Google Inc. The text of the
-license included with the file is provided below. 
+license included with the file is provided below.
 
 ===============================================================================
 /**
