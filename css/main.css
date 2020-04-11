@@ -113,6 +113,7 @@ header img {
     margin: 8px 0;
     font-size: medium;
     color: black;
+    overflow-wrap: break-word;
 }
 
 .dialog_container {

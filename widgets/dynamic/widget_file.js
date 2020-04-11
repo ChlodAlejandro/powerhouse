@@ -22,16 +22,6 @@ class FileWidget {
     }
 
     render() {
-        /*
-        <div class="file">
-            <meta name="type" content="file">
-            <meta name="size" content="124982">
-            <meta name="mtime" content="2141782">
-            <meta name="ctime" content="21417821541">
-            <img class="icon" src="images/md_ico/file.svg" alt="file">
-            <p class="name file_name">testfile.file</p>
-        </div>
-         */
         var file_container = document.createElement("div");
 
         var file_container_type = document.createElement("meta");
@@ -40,6 +30,8 @@ class FileWidget {
         var file_container_ctime = document.createElement("meta");
         var file_container_icon = document.createElement("img");
         var file_container_name = document.createElement("p");
+
+        file_container.classList.add("file");
 
         file_container_type.setAttribute("name", "type");
         file_container_type.setAttribute("content", this.type);
@@ -54,12 +46,22 @@ class FileWidget {
         file_container_ctime.setAttribute("content", this.size);
 
         file_container_icon.classList.add("icon");
-        file_container_icon.setAttribute("src", /*getIcon(filename)*/ "images/md_ico/file.svg");
+        file_container_icon.setAttribute("src", /*getIcon(filename)*/
+            this.type === "file" ? "images/md_ico/file.svg" : "images/md_ico/folder.svg");
         file_container_icon.setAttribute("alt", this.type + " icon");
 
         file_container_name.classList.add("name");
         file_container_name.classList.add("file_name");
         file_container_name.innerHTML = this.name;
+
+        file_container.appendChild(file_container_type);
+        file_container.appendChild(file_container_size);
+        file_container.appendChild(file_container_mtime);
+        file_container.appendChild(file_container_ctime);
+        file_container.appendChild(file_container_icon);
+        file_container.appendChild(file_container_name);
+
+        return file_container;
     }
 
 }

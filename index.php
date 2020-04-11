@@ -38,16 +38,7 @@
 
 		<!-- Files List -->
 
-		<div id="files">
-			<div class="file">
-				<meta name="type" content="file">
-				<meta name="filesize" content="124982">
-				<meta name="mtime" content="2141782">
-				<meta name="ctime" content="21417821541">
-				<img class="icon" src="images/md_ico/file.svg" alt="file">
-				<p class="name file_name">testfile.file</p>
-			</div>
-		</div>
+		<div id="files"></div>
 
 		<!-- Dialog Boxes -->
 
