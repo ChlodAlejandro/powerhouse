@@ -6,9 +6,6 @@
         <meta charset="UTF-8">
         <title>Powerhouse</title>
 
-		<link rel="stylesheet" type="text/css" href="css/standard.css">
-		<link rel="stylesheet" type="text/css" href="css/main.css">
-
         <?php require("widgets/header_preload.php") ?>
 
 		<!-- File manager. Mandatory for pages accessing file database. -->
@@ -43,8 +40,12 @@
 
 		<div id="files">
 			<div class="file">
+				<meta name="type" content="file">
+				<meta name="filesize" content="124982">
+				<meta name="mtime" content="2141782">
+				<meta name="ctime" content="21417821541">
 				<img class="icon" src="images/md_ico/file.svg" alt="file">
-				<p class="name">testfile.file</p>
+				<p class="name file_name">testfile.file</p>
 			</div>
 		</div>
 
@@ -146,7 +147,7 @@
 
 <!--
 
- POWERHOUSE. Copyright (c) 2020.
+ POWERHOUSE.
 
  (o)> (*penguin noises*)
  / )

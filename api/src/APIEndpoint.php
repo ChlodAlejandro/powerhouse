@@ -1,21 +1,17 @@
 <?php
+require_once __DIR__ . "/APIResponseBuilder.php";
 
-class APIEndpoint
+abstract class APIEndpoint
 {
+    /**
+     * @return array Must return a string array of allowed functions.
+     */
+    abstract public function getAllowedMethods();
 
-    public function __construct($options)
-    {
-        try {
-            if (!is_array($options)) {
-                throw new Exception("$options is not an array.");
-            }
-        } catch (Exception $e) {
-            self::handleEndpointException($e);
+    public function execute() {
+        if (!in_array($_SERVER["REQUEST_METHOD"], $this->getAllowedMethods())) {
+            echo APIResponseBuilder::buildResponse("405", null);
+            exit();
         }
     }
-
-    public static function handleEndpointException($exception) {
-        // build response
-    }
-
 }

@@ -1,6 +1,4 @@
 <?php
-require_once("../../env.php");
+require_once __DIR__ . "/../src/endpoints/FileListEndpoint.php";
 
-if ($_SERVER['REQUEST_METHOD'] != "GET") {
-    http_response_code(405);
-}
+FileListEndpoint::i()->execute();

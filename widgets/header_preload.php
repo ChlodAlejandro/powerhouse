@@ -4,6 +4,14 @@ require_once "env.php";
 
 echo '<!-- Auto-generated code. Expect mess. -->' . PHP_EOL;
 
+// Viewport adjustments
+
+echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
+
+// Required CSS tags
+echo '<link rel="stylesheet" type="text/css" href="' . POWERHOUSE_HTTP_ROOT . '/css/standard.css">';
+echo '<link rel="stylesheet" type="text/css" href="' . POWERHOUSE_HTTP_ROOT . '/css/main.css">';
+
 // Metadata tags
 echo '<link rel="icon" type="image/ico" href="' . POWERHOUSE_HTTP_ROOT . '/favicon.ico">';
 
@@ -22,14 +30,7 @@ if (DEBUG_MODE) {
 
 // Page and installation constants.
 
-echo "<script>";
-echo "const POWERHOUSE_HTTP_ROOT = \"" . POWERHOUSE_HTTP_ROOT . "\";";
-echo "const POWERHOUSE_DEV_PAGE = \"" . POWERHOUSE_DEV_PAGE . "\";";
-
-// TODO DIRECTORY THING
-echo "const phDirectory = \"" . "/" . "\";";
-
-echo "</script>";
+echo '<script type="text/javascript" src="' . POWERHOUSE_HTTP_ROOT . '/scripts/constants.djs"></script>';
 
 // Other scripts
 echo '<script src="' . POWERHOUSE_HTTP_ROOT . '/scripts/utils.js"></script>';

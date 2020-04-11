@@ -4,9 +4,16 @@
 /**
  * DEBUG_MODE
  *
- * If Powerhouse should be using development files instead.
+ * If Powerhouse should be using development options instead.
  **/
 define("DEBUG_MODE", true);
+
+/**
+ * POWERHOUSE_VERSION
+ *
+ * The version of Powerhouse.
+ **/
+define("POWERHOUSE_VERSION", "1.0.0-beta-0001");
 
 /**
  * POWERHOUSE_DEV_PAGE
@@ -24,5 +31,4 @@ define("POWERHOUSE_DEV_PAGE", "https://github.com/ChlodAlejandro/powerhouse");
  * The root of the Powerhouse directory, relative to the file
  * system, with / being the root of the file system.
  **/
-list($scriptPath) = get_included_files();
-define("POWERHOUSE_DIR_ROOT", dirname($scriptPath));
+define("POWERHOUSE_DIR_ROOT", __DIR__);
