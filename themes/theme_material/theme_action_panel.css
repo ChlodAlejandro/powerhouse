@@ -3,7 +3,6 @@
     display: flex;
     justify-content: space-between;
     background-color: var(--main-accent-darker);
-    margin-bottom: 16px;
 }
 
 #action_panel a, #action_panel a:visited, #action_panel a:active, #action_panel a:focus {

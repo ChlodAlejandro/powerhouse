@@ -1,4 +1,5 @@
 @import url("material.blue-indigo.min.css");
+@import url("fonts.css");
 
 :root {
     --main-bg-color: #0e2231;
@@ -10,7 +11,7 @@
 }
 
 body {
-    font-family: "Arial", sans-serif;
+    font-family: "Heebo", "Arial", sans-serif;
     background-color: var(--main-bg-color);
     color: var(--main-text-color);
 }
@@ -35,4 +36,9 @@ header img {
 
 .mdl_ico {
     font-size: 22px;
+}
+
+.tooltip {
+    font-size: 1.1em;
+    border-radius: 0.4em;
 }

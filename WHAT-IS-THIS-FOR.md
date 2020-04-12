@@ -56,6 +56,9 @@ Management functions and classes used for verification of proper Powerhouse inst
 ### CLI Scripts (`/system/cli`)
 CLI-run PHP scripts used for Powerhouse maintenance.
 
+## Themes
+Themes that Powerhouse uses. The theme is configured in the `env.php` file, and are installed in this folder. The default and only pre-installed theme is `material`, a basic Material theme.
+
 ## Widgets (`/widgets`) 
 Dynamic PHP widgets that are loaded in with the page.
 

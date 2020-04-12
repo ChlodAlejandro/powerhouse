@@ -42,6 +42,10 @@ require_once __DIR__ . "/widgets/utilities/TagGenerator.php";
 				    class="selectDropdownButton"
 				    data-handler="selectSortType"
 				    data-tooltip="Sort">list</a>
+				<a id="selectOpen_layout"
+				   class="selectDropdownButton"
+				   data-dialog="selectLayout"
+				   data-tooltip="Change Layout">apps</a>
 				<a id="dialogOpen_newFolder"
 				    class="dialogButton"
 				    data-dialog="dialogNewFolder"
@@ -55,7 +59,16 @@ require_once __DIR__ . "/widgets/utilities/TagGenerator.php";
 
 		<!-- Files List -->
 
-		<div id="files"></div>
+		<div id="files" class="files_layout_grid">
+<!--		<div id="files" class="files_layout_details">-->
+			<div class="file files_header">
+				<span class="file_icon"></span>
+				<span class="file_name">Name</span>
+				<span class="file_size">Size</span>
+				<span class="file_mtime">Last Modified</span>
+				<span class="file_ctime">Created</span>
+			</div>
+		</div>
 
 		<!-- Dialog Boxes -->
 
