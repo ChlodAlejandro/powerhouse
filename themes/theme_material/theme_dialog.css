@@ -1,0 +1,120 @@
+.dialog_container {
+    background-color: rgba(0, 0, 0, 0.5);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog {
+    min-width: 400px;
+    min-height: 160px;
+    padding: 32px;
+    background-color: #eee;
+    border-radius: 16px;
+}
+
+.dialog h3 {
+    margin: 0;
+}
+
+#dialogNewFolder .new-folder-name-input {
+    width: 100%;
+}
+
+#dialogNewFolder .new-folder-submit {
+    float: right;
+}
+
+#dialogUpload input[type="file"] {
+    height: 0;
+    width: 0;
+    display: none;
+    opacity: 0;
+}
+
+#dialogUpload #uploadBox {
+    display: block;
+    background-color: #bbb;
+    width: 100%;
+    padding: 28px 0;
+    text-align: center;
+    margin: 8px 0;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#dialogUpload .upload-submit {
+    float: right;
+}
+
+#dialogUpload .upload-queue {
+    width: 100%;
+    overflow-y: auto;
+    height: 200px;
+    background-color: #ccc;
+}
+
+#dialogUpload .upload-queue table, #dialogUpload .upload-queue tr {
+    width: 100%;
+}
+
+#dialogUpload .upload-queue td:not(.separator) {
+    padding: 4px;
+}
+
+#dialogUpload .upload-queue .separator * {
+    border-color: #aaa;
+    margin: 0;
+    width: 100%;
+}
+
+#dialogUpload .upload-queue .hint {
+    color: #aaa;
+}
+
+#dialogUpload .upload-queue td.icon, #dialogUpload .upload-queue td.icon img {
+    width: 1.5em;
+    height: auto;
+    cursor: pointer;
+}
+
+#dialogUpload .upload-queue td.filename {
+    width: 100%;
+}
+
+#dialogUpload .upload-queue td.upload_progress {
+    text-align: right;
+    padding-right: 6px;
+}
+
+#dialogUpload .upload-queue tr {
+    border-bottom: 1px solid #aaa;
+}
+
+
+@keyframes fly-in-top {
+    from {top: -105vh}
+    to {top: 0}
+}
+
+@keyframes fly-out-top {
+    from {top: 0}
+    to {top: -105vh}
+}
+
+.dialog.shown {
+    position: relative;
+    animation: fly-in-top 0.4s ease;
+}
+
+.dialog:not(.shown) {
+    position: relative;
+    animation: fly-out-top 0.4s ease;
+}

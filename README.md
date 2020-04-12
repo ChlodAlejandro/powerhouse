@@ -1,6 +1,5 @@
 **This project is currently in development. It may not be working as of now. Please wait until a stable version has been built and released.**
 
-*The following image is best viewed with a dark-theme GitHub.*
 ![Powerhouse banner](https://raw.githubusercontent.com/ChlodAlejandro/powerhouse/master/images/powerhouse-banner-narrow-on_blue.png)
 Powerhouse is a customizable PHP-based file distribution program.
 
@@ -22,4 +21,4 @@ Powerhouse was built and tested exclusively on PHP 7.3.1 (x86, thread safe) usin
 Powerhouse aims to be compatible no matter what operating system the webserver is installed on.
 
 ## License 
-This entire repository, including the source code, unless otherwise explicitly stated in the [LICENSE](https://github.com/ChlodAlejandro/powerhouse/blob/master/LICENSE.md) file in a folder or by the file itself, is under the Apache License, v2.0.
+This entire repository, including the source code, unless otherwise explicitly stated in the LICENSE file in a folder or by the file itself, is under the [Apache License, v2.0](https://github.com/ChlodAlejandro/powerhouse/blob/master/LICENSE).

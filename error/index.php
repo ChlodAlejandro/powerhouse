@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../env.php";
+require_once __DIR__ . "/../widgets/utilities/TagGenerator.php";
 
 function parseError($error) {
     try {
@@ -62,9 +63,7 @@ function getTraces() {
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<link rel="stylesheet" type="text/css" href="../css/standard.css">
-		<link rel="stylesheet" type="text/css" href="../css/main.css">
-
+		<?php echo TagGenerator::getThemeCSS("global") ?>
 		<link rel="icon" type="image/ico" href="../favicon.ico">
 
 		<style>

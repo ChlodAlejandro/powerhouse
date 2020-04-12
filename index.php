@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . "/widgets/utilities/TagGenerator.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +7,11 @@
         <meta charset="UTF-8">
         <title>Powerhouse</title>
 
-        <?php require("widgets/header_preload.php") ?>
+        <?php
+		$requiredStyles = ["action_panel", "dialog", "files"];
+
+		require("widgets/header_preload.php");
+		?>
 
 		<!-- File manager. Mandatory for pages accessing file database. -->
 		<script src="scripts/file_manager.js"></script>
@@ -27,12 +32,24 @@
 
 		<div id="action_panel">
 			<div class="ap_left">
-				<a class="mdl_ico">folder</a>
-				<div>Main folder</div>
+				<div class="ap_directory">
+					<a id="ap_home" class="icon" data-tooltip="Return to main folder">folder</a>
+					<div>Main folder</div>
+				</div>
 			</div>
 			<div class="ap_right">
-				<a class="dialogButton" for="dialogNewFolder">create_new_folder</a>
-				<a class="dialogButton" for="dialogUpload">cloud_upload</a>
+				<a id="selectOpen_sort"
+				    class="selectDropdownButton"
+				    data-handler="selectSortType"
+				    data-tooltip="Sort">list</a>
+				<a id="dialogOpen_newFolder"
+				    class="dialogButton"
+				    data-dialog="dialogNewFolder"
+				    data-tooltip="New Folder">create_new_folder</a>
+				<a id="dialogOpen_upload"
+				    class="dialogButton"
+				    data-dialog="dialogUpload"
+				    data-tooltip="Upload">cloud_upload</a>
 			</div>
 		</div>
 
@@ -84,50 +101,41 @@
 <!--			</div>-->
 <!--		</div>-->
 
-		<!-- Tooltips -->
-
-		<div class="mdl-tooltip" data-mdl-for="fileUpload">
-			Upload
-		</div>
-		<div class="mdl-tooltip" data-mdl-for="folderNew">
-			New Folder
-		</div>
-
 		<!-- Scripts -->
 
-		<script>
-			const fadeSpeed = 200;
-			var dlg_newFolderContainer = $("#dialogNewFolderContainer");
-
-			var dialogBoxes = $(".dialog");
-			for (let i = 0; i < dialogBoxes.length; i++) {
-				$(dialogBoxes[i]).parent().fadeOut(0);
-				$(dialogBoxes[i]).parent().on("click", (event) => {
-					if (event.target === event.currentTarget) {
-						$(dialogBoxes[i]).parent().fadeOut(200);
-						$(dialogBoxes[i]).removeClass("shown");
-					}
-				});
-			}
-
-			var dialogButtons = $(".dialogButton");
-			for (let i = 0; i < dialogButtons.length; i++) {
-				$(dialogButtons[i]).on("click", () => {
-					var dialogTarget = $("#" + dialogButtons[i].getAttribute("for"));
-					dialogTarget.addClass("shown");
-					dialogTarget.parent().fadeIn(fadeSpeed);
-				});
-			}
-
-			var uploadQueueIcons = $("#dialogUpload .upload-queue td.icon");
-			for (let i = 0; i < uploadQueueIcons.length; i++) {
-				$(uploadQueueIcons[i]).on("hover", () => {
-					uploadQueueIcons[i].firstChild.src = "images/md_ico/clear.svg";
-				}, () => {
-					uploadQueueIcons[i].firstChild.src = "images/md_ico/file.svg";
-				});
-			}
-		</script>
+<!--		<script>-->
+<!--			const fadeSpeed = 200;-->
+<!--			var dlg_newFolderContainer = $("#dialogNewFolderContainer");-->
+<!---->
+<!--			var dialogBoxes = $(".dialog");-->
+<!--			for (let i = 0; i < dialogBoxes.length; i++) {-->
+<!--				$(dialogBoxes[i]).parent().fadeOut(0);-->
+<!--				$(dialogBoxes[i]).parent().on("click", (event) => {-->
+<!--					if (event.target === event.currentTarget) {-->
+<!--						$(dialogBoxes[i]).parent().fadeOut(200);-->
+<!--						$(dialogBoxes[i]).removeClass("shown");-->
+<!--					}-->
+<!--				});-->
+<!--			}-->
+<!---->
+<!--			var dialogButtons = $(".dialogButton");-->
+<!--			for (let i = 0; i < dialogButtons.length; i++) {-->
+<!--				$(dialogButtons[i]).on("click", () => {-->
+<!--					var dialogTarget = $("#" + dialogButtons[i].getAttribute("for"));-->
+<!--					dialogTarget.addClass("shown");-->
+<!--					dialogTarget.parent().fadeIn(fadeSpeed);-->
+<!--				});-->
+<!--			}-->
+<!---->
+<!--			var uploadQueueIcons = $("#dialogUpload .upload-queue td.icon");-->
+<!--			for (let i = 0; i < uploadQueueIcons.length; i++) {-->
+<!--				$(uploadQueueIcons[i]).on("hover", () => {-->
+<!--					uploadQueueIcons[i].firstChild.src = "images/md_ico/clear.svg";-->
+<!--				}, () => {-->
+<!--					uploadQueueIcons[i].firstChild.src = "images/md_ico/file.svg";-->
+<!--				});-->
+<!--			}-->
+<!--		</script>-->
 		<script src="scripts/uploader.js"></script>
     </body>
 	<script>
@@ -135,6 +143,7 @@
 		    buildFiles(document.getElementById("files"), await getFileList());
 		})();
 	</script>
+    <?php require("widgets/body_postload.php"); ?>
 
 <!--
 

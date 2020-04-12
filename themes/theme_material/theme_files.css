@@ -1,0 +1,52 @@
+#files {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+#files .file {
+    width: 128px;
+    min-height: 128px;
+    background-color: white;
+    border-radius: 4px;
+    padding: 8px;
+    margin: 8px;
+    transition: background-color 0.5s ease, transform 0.2s ease;
+}
+
+#files .file:hover {
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+#files .file:active {
+    transform: scale(0.98);
+}
+
+#files .file .icon {
+    width: 100%;
+    height: auto;
+}
+
+#files .file .name {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    text-align: center;
+
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 8px;
+    font-size: medium;
+    height: calc(1.2em + 16px);
+    line-height: 1em;
+    color: black;
+
+    overflow: hidden;
+    word-break: break-word;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

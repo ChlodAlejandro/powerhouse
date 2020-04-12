@@ -34,7 +34,20 @@ define("POWERHOUSE_HTTP_ROOT", "/PROJECTS/powerhouse");
  * Default: /var/ph_files
  * Suggested: [anywhere]
  **/
-define("POWERHOUSE_DIR_FILES", POWERHOUSE_DIR_ROOT . "/files");
+define("POWERHOUSE_DIR_FILES", POWERHOUSE_DIR_ROOT . "/old/files");
+
+// POWERHOUSE APPEARANCE AND THEME
+
+/**
+ * POWERHOUSE_APPEARANCE_THEME
+ *
+ * The theme that Powerhouse uses. Themes must be valid collections
+ * of CSS files that shape the look of the Powerhouse interface.
+ *
+ * Default: material
+ * Suggested: material
+ **/
+define("POWERHOUSE_APPEARANCE_THEME", "material");
 
 // POWERHOUSE FILE STORAGE AND MANAGEMENT
 

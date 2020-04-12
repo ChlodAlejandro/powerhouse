@@ -1,0 +1,57 @@
+#action_panel {
+    color: var(--main-action-text-color);
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--main-accent-darker);
+    margin-bottom: 16px;
+}
+
+#action_panel a, #action_panel a:visited, #action_panel a:active, #action_panel a:focus {
+    color: var(--main-action-text-color);
+    cursor: pointer;
+}
+
+#action_panel .ap_left, #action_panel .ap_right {
+    margin: 6px 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#action_panel .ap_left {
+    font-size: medium;
+}
+
+#action_panel .ap_left > div {
+    /*position: relative;*/
+    /*bottom: 4px;*/
+    font-weight: bold;
+}
+
+#action_panel .ap_left .ap_directory > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#action_panel .ap_right, .mdl_ico {
+    font-family: "Material Icons", sans-serif;
+}
+
+#action_panel .ap_right {
+    font-size: 32px;
+    line-height: 1em;
+    letter-spacing: 0.05em;
+}
+
+#action_panel .ap_right > a {
+    height: 1em;
+    width: 1em;
+    padding: 4px;
+
+    border-radius: 0.2em;
+    transition: background-color 0.2s ease;
+}
+
+#action_panel .ap_right > a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
