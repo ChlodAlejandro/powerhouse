@@ -1,5 +1,5 @@
 $('#uploadForm').onsubmit = () => {
-	$.post('interface/upload.php', $('#uploadForm').serialize());
+	axios.post('interface/upload.php', $('#uploadForm').serialize());
 	return false;
 };
 

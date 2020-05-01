@@ -40,7 +40,7 @@ if (isset($requiredScripts) && is_array($requiredScripts)) {
 echo '<link rel="icon" type="image/ico" href="' . POWERHOUSE_HTTP_ROOT . '/favicon.ico">';
 
 // Libraries and third-party scripts.
-echo '<script src="' . POWERHOUSE_HTTP_ROOT . '/scripts/third-party/jquery-3.4.1.min.js"></script>';
+echo '<script src="' . POWERHOUSE_HTTP_ROOT . '/scripts/third-party/jquery-3.5.0.min.js"></script>';
 echo '<script src="' . POWERHOUSE_HTTP_ROOT . '/scripts/third-party/axios.min.js"></script>';
 
 /** @noinspection PhpStatementHasEmptyBodyInspection */
