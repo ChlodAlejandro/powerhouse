@@ -1,0 +1,4 @@
+*.djs linguist-language=JavaScript
+*.dcss linguist-language=CSS
+
+*/third-party/* linguist-vendored
