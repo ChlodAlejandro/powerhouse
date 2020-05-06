@@ -1,9 +1,11 @@
+# Favicon
 <Files "favicon.ico">
     Options FollowSymLinks
     Order allow,deny
     Allow from all
 </Files>
 
+# PHP constants and installation configuration
 <Files "env.php">
     Order deny,allow
     Deny from all
@@ -14,12 +16,15 @@
     Deny from all
 </Files>
 
+# JavaScript and Dynamic JavaScript headers
 <FilesMatch ".+\.d?js$">
     Header always set Content-Type "text/javascript"
 </FilesMatch>
 
+# Image headers
 <FilesMatch ".(jpe?g|png)$">
     Header always set Cache-Control "private, max-age=31536000"
 </FilesMatch>
 
+# Process Dynamic JavaScript files with PHP
 AddType application/x-httpd-php .djs

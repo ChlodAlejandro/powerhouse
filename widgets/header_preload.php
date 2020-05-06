@@ -50,4 +50,4 @@ if (DEBUG_MODE) {
     // more code
 }
 
-echo PHP_EOL . '<!-- End of auto-generated code. -->';
+echo PHP_EOL . '<!-- End of auto-generated code. -->' . PHP_EOL;

@@ -42,7 +42,7 @@ define("POWERHOUSE_DIR_FILES", POWERHOUSE_DIR_ROOT . "/old/files");
  * POWERHOUSE_APPEARANCE_THEME
  *
  * The theme that Powerhouse uses. Themes must be valid collections
- * of CSS files that shape the look of the Powerhouse interface.
+ * of CSS files that shape the look of the Powerhouse browse.
  *
  * Default: material
  * Suggested: material

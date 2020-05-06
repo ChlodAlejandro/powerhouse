@@ -24,6 +24,36 @@
     margin: 0;
 }
 
+@keyframes fly-in-top {
+    from {top: -105vh}
+    to {top: 0}
+}
+
+@keyframes fly-out-top {
+    from {top: 0}
+    to {top: -105vh}
+}
+
+.dialog_container.shown .dialog {
+    position: relative;
+    animation: fly-in-top 0.4s ease;
+}
+
+.dialog_container:not(.shown) .dialog {
+    position: relative;
+    animation: fly-out-top 0.4s ease;
+}
+
+.dialog_container.shown {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+.dialog_container:not(.shown) {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
 #dialogNewFolder .new-folder-name-input {
     width: 100%;
 }
@@ -98,23 +128,10 @@
     border-bottom: 1px solid #aaa;
 }
 
-
-@keyframes fly-in-top {
-    from {top: -105vh}
-    to {top: 0}
+#dialogNewFolder h3 {
+    color: black;
 }
 
-@keyframes fly-out-top {
-    from {top: 0}
-    to {top: -105vh}
-}
-
-.dialog.shown {
-    position: relative;
-    animation: fly-in-top 0.4s ease;
-}
-
-.dialog:not(.shown) {
-    position: relative;
-    animation: fly-out-top 0.4s ease;
+#dialogNewFolder #dialogNewFolder_folderName {
+    color: black;
 }

@@ -16,12 +16,19 @@ class DialogContent {
 
 class DialogWidget {
 
-    static dialogs = [];
+    static close(dialogId) {
+        var d = document.getElementById(dialogId);
+        d.parentElement.addEventListener("animationend", (event) => {
+            // noinspection JSUnresolvedVariable
+            d.parentNode.parentNode.removeChild(d.parentNode);
+        });
+        d.parentElement.classList.remove("shown");
+    }
 
     constructor(name, content) {
         this.name = name;
 
-        if (!(this.content instanceof DialogContent)) {
+        if (!(content instanceof DialogContent)) {
             throw new Error("Content provided for DialogWidget is not of the type DialogContent.")
         }
 
@@ -29,21 +36,33 @@ class DialogWidget {
     }
 
     render() {
+        var dialogContainerId = (this.name)[0].toUpperCase() + this.name.substring(1) + "Container";
+        var dialogId = (this.name)[0].toUpperCase() + this.name.substring(1);
+
+        if (document.getElementById(this.name) !== null)
+            throw new Error("Dialog is already open.");
+
         var dialog_container = document.createElement("div");
         var dialog = document.createElement("div");
 
         dialog_container.classList.add("dialog_container");
-        dialog_container.setAttribute("id", "dialog"
-            + (this.name)[0].toUpperCase() + this.name.substring(1) + "Container");
+        dialog_container.classList.add("shown");
+        dialog_container.setAttribute("id", "dialog" + dialogContainerId);
 
         dialog.classList.add("dialog");
-        dialog.setAttribute("id", "dialog"
-            + (this.name)[0].toUpperCase() + this.name.substring(1));
+        dialog.setAttribute("id", "dialog" + dialogId);
 
         for (var child of this.content.content)
             dialog.appendChild(child);
         dialog_container.appendChild(dialog);
+
+        if (typeof dialogPreProcess === "function")
+            dialogPreProcess(this.name, dialog_container);
+
+        document.body.append(dialog_container);
+
+        if (typeof dialogPostProcess === "function")
+            dialogPostProcess(this.name, dialog_container);
     }
 
 }
-

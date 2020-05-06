@@ -7,4 +7,4 @@ echo '<!-- Auto-generated code. Expect mess. -->' . PHP_EOL;
 
 echo TagGenerator::getThemeScript("body-postload") . PHP_EOL;
 
-echo PHP_EOL . '<!-- End of auto-generated code. -->';
+echo PHP_EOL . '<!-- End of auto-generated code. -->' . PHP_EOL;

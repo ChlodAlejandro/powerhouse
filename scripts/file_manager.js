@@ -2,7 +2,7 @@ async function getFileList(directory = "") {
     const queryParameters = new URLSearchParams();
 
     if (directory !== "")
-        queryParameters.append("directory", directory);
+        queryParameters.append("dir", directory);
 
     // noinspection JSUnresolvedVariable
     var filesList;
