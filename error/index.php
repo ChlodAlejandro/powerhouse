@@ -124,7 +124,7 @@ function getTraces() {
 	</head>
 	<body>
 		<div id="content">
-			<img id="errorIcon" src="../images/error-ico.png" alt="error icon">
+			<img id="errorIcon" src="../images/icon/error.svg" alt="error icon">
 			<h1>That wasn't supposed to happen...</h1>
 			<p>Sorry, but it looks like something really bad went wrong.</p>
 			<p>If this keeps happening, please report the issue to the <a href="<?php echo POWERHOUSE_DEV_PAGE ?>">Powerhouse development page</a>.</p>

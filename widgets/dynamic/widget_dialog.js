@@ -16,6 +16,19 @@ class DialogContent {
 
 class DialogWidget {
 
+    static getDialogStyle(dialogName) {
+        if (document.getElementById(`dialogStylesheet_${dialogName}`) == null) {
+            var tag = document.createElement("link");
+
+            tag.id = (`dialogStylesheet_${dialogName}`);
+            tag.setAttribute("type", "text/css");
+            tag.setAttribute("rel", "stylesheet");
+            tag.setAttribute("href", getThemeCSS("dialogs", "dialog_" + dialogName));
+
+            document.head.appendChild(tag);
+        }
+    }
+
     static close(dialogId) {
         var d = document.getElementById(dialogId);
         d.parentElement.addEventListener("animationend", (event) => {
@@ -25,32 +38,53 @@ class DialogWidget {
         d.parentElement.classList.remove("shown");
     }
 
-    constructor(name, content) {
+    constructor(name, content, options = {}) {
         this.name = name;
+        DialogWidget.getDialogStyle(name);
 
         if (!(content instanceof DialogContent)) {
             throw new Error("Content provided for DialogWidget is not of the type DialogContent.")
         }
 
         this.content = content;
+        if (this.options !== undefined && typeof this.options !== "object")
+            throw new Error("Widget options must either be undefined or an object.");
+        this.options = options;
     }
 
     render() {
         var dialogContainerId = (this.name)[0].toUpperCase() + this.name.substring(1) + "Container";
         var dialogId = (this.name)[0].toUpperCase() + this.name.substring(1);
 
-        if (document.getElementById(this.name) !== null)
-            throw new Error("Dialog is already open.");
+        var finalDialogContainerId = "dialog" + dialogContainerId;
+        var finalContainerId = "dialog" + dialogId;
+
+        if (!this.options["stackable"]) {
+            if (document.getElementById(finalContainerId) !== null)
+                throw new Error("Dialog is already open.");
+        } else {
+            if (document.getElementById(finalContainerId) !== null) {
+                var identification = Math.floor(Math.random() * 1000000);
+
+                dialogContainerId += `_${identification}`;
+                dialogId += `_${identification}`;
+
+                finalDialogContainerId = "dialog" + dialogContainerId;
+                finalContainerId = "dialog" + dialogId;
+            }
+        }
 
         var dialog_container = document.createElement("div");
         var dialog = document.createElement("div");
 
         dialog_container.classList.add("dialog_container");
+        dialog_container.classList.add("dialog_container_" + this.name);
         dialog_container.classList.add("shown");
-        dialog_container.setAttribute("id", "dialog" + dialogContainerId);
+        dialog_container.setAttribute("id", finalDialogContainerId);
 
         dialog.classList.add("dialog");
-        dialog.setAttribute("id", "dialog" + dialogId);
+        dialog.classList.add("dialog_" + this.name);
+        dialog.setAttribute("id", finalContainerId);
 
         for (var child of this.content.content)
             dialog.appendChild(child);

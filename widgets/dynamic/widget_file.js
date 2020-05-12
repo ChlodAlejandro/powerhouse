@@ -45,9 +45,19 @@ class FileWidget {
 
         file_container.classList.add("file");
 
+        if (this.type !== "file") {
+            file_container.classList.add("dir");
+            file_container.addEventListener("click", () => {
+                enterDirectory(
+                    `${CURRENT_DIRECTORY.length > 0 ? `${CURRENT_DIRECTORY}/` : ""}${this.name}`);
+            });
+        }
+
         file_container_icon.classList.add("file_icon");
         file_container_icon.setAttribute("src", /*getIcon(filename)*/
-            this.type === "file" ? "images/md_ico/file.svg" : "images/md_ico/folder.svg");
+            this.type === "file" ?
+                getPath("images/md_ico/file.svg") :
+                getPath("images/md_ico/folder.svg"));
         file_container_icon.setAttribute("alt", this.type + " icon");
 
         file_container_name.classList.add("file_name");

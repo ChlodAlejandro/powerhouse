@@ -1,3 +1,5 @@
+// dependencies: ["widgets/dynamic/widget_dialog.js"]
+
 class DialogNewFolder {
 
     static buildDialog(currentDirectory) {
@@ -18,22 +20,22 @@ class DialogNewFolder {
         f.setAttribute("action", POWERHOUSE_HTTP_ROOT + "/api/POST/mkdir.php");
         f.setAttribute("enctype", "application/x-www-form-urlencoded");
 
-        f_i.classList.add("new-folder-name-input");
+        f_i.classList.add("dialog-new-folder-name-input");
         f_i_i.setAttribute("type", "text");
         f_i_i.setAttribute("id", "dialogNewFolder_folderName");
         f_i_i.setAttribute("name", "ph_folderName");
         f_i_l.setAttribute("for", "dialogNewFolder_folderName");
         f_i_l.innerText = "Folder Name";
 
-        f_b_c.classList.add("new-folder-cancel");
+        f_b_c.classList.add("dialog-new-folder-cancel");
         f_b_c.innerText = "Cancel";
         f_b_c.addEventListener("click", () => {
-            DialogWidget.close(f.parentNode.id);
+            DialogWidget.close(f.parentElement.id);
         });
         f_b_c.setAttribute("type", "button");
 
         f_b_s.name = "submit";
-        f_b_s.classList.add("new-folder-submit");
+        f_b_s.classList.add("dialog-new-folder-submit");
         f_b_s.innerText = "Create";
 
         f_b.appendChild(f_b_s);

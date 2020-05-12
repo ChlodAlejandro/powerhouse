@@ -22,3 +22,12 @@ async function getFileList(directory = "") {
 
     return filesList;
 }
+
+async function updateFileList() {
+    var files = await getFileList(CURRENT_DIRECTORY);
+    if (files !== undefined) {
+        var fileList = document.getElementById("fileList");
+        fileList.innerHTML = "";
+        buildFiles(fileList, files);
+    }
+}

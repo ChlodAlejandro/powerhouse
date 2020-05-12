@@ -19,23 +19,25 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
         <?php
 		$requiredStyles = ["action_panel", "dialog", "files"];
 
-		require("widgets/header_preload.php");
+		require POWERHOUSE_DIR_ROOT . "/widgets/header_preload.php";
 		?>
 
 		<script>
-			const CURRENT_DIRECTORY = "<?php echo $CD ?>";
+			var CURRENT_DIRECTORY = "<?php echo $CD ?>";
 		</script>
 
 		<!-- File manager. Mandatory for pages accessing file database. -->
-		<script src="<?php echo POWERHOUSE_HTTP_ROOT ?>/scripts/file_manager.js"></script>
+		<script src="<?php echo POWERHOUSE_HTTP_ROOT ?>/scripts/browse_file_manager.js"></script>
+		<script src="<?php echo POWERHOUSE_HTTP_ROOT ?>/scripts/browse_page_navigation.js"></script>
 
 		<!-- Required widgets go here. -->
 		<?php echo TagGenerator::getThemeScript("dialog-hooks") . PHP_EOL ?>
 		<?php echo TagGenerator::getRootScript("widgets/dynamic/widget_file") ?>
         <?php echo TagGenerator::getRootScript("widgets/dynamic/widget_dialog") ?>
+        <?php echo TagGenerator::getRootScript("widgets/dynamic/widget_dialogError") ?>
         <?php echo TagGenerator::getRootScript("widgets/dynamic/widget_dialogNewFolder") ?>
 
-        <?php require("widgets/header_postload.php") ?>
+        <?php require POWERHOUSE_DIR_ROOT . "/widgets/header_postload.php"; ?>
     </head>
     <body>
 		<header>
@@ -50,7 +52,8 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
 			<div class="ap_left">
 				<div class="ap_directory">
 					<a id="ap_home" class="icon" data-tooltip="Return to main folder">folder</a>
-					<div>Main folder</div>
+					<div id="ap_directory_list">
+					</div>
 				</div>
 			</div>
 			<div id="ap_options" class="ap_right">
@@ -87,6 +90,9 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
 				<span class="file_size">Size</span>
 				<span class="file_mtime">Last Modified</span>
 				<span class="file_ctime">Created</span>
+			</div>
+			<div id="fileList">
+
 			</div>
 		</div>
 
@@ -154,15 +160,14 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
 <!--				});-->
 <!--			}-->
 <!--		</script>-->
-		<?php echo TagGenerator::getRootScript("scripts/uploader") ?>
-        <?php echo TagGenerator::getRootScript("scripts/action_panel") ?>
+		<?php echo TagGenerator::getRootScript("scripts/browse_uploader") ?>
+        <?php echo TagGenerator::getRootScript("scripts/browse_action_panel") ?>
+		<script>
+            buildActionPanelDirectoryList(CURRENT_DIRECTORY);
+            updateFileList();
+		</script>
     </body>
-	<script>
-		(async function() {
-		    buildFiles(document.getElementById("files"), await getFileList(CURRENT_DIRECTORY));
-		})();
-	</script>
-    <?php require("widgets/body_postload.php"); ?>
+    <?php require POWERHOUSE_DIR_ROOT . "/widgets/body_postload.php"; ?>
 
 <!--
 

@@ -103,7 +103,8 @@ class APIException
      */
     public function toObject() {
         $e = [
-            "code" => $this->httpCode,
+            "powerhouse_code" => $this->code,
+            "http_code" => $this->httpCode,
             "summary" => $this->shortMessage,
             "description" => $this->longMessage
         ];

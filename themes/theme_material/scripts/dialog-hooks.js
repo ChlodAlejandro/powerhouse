@@ -16,19 +16,23 @@ var dialogPreProcess = (dialogName, dialogContainer) => {
     </div>
 </div>
  */
-        var inputBody = $(dialogContainer).find("div.new-folder-name-input");
+        let inputBody = $(dialogContainer).find("div.dialog-new-folder-name-input");
         inputBody[0].classList.add("mdl-textfield", "mdl-js-textfield", "mdl-textfield--floating-label");
-        var inputFolderName = inputBody.find("input")[0];
+        let inputFolderName = inputBody.find("input")[0];
         inputFolderName.classList.add("mdl-textfield__input");
-        var labelFolderName = inputBody.find("label")[0];
+        let labelFolderName = inputBody.find("label")[0];
         labelFolderName.classList.add("mdl-textfield__label");
 
-        var submit = $(dialogContainer).find(".new-folder-submit")[0];
+        let submit = $(dialogContainer).find(".dialog-new-folder-submit")[0];
         submit.classList.add("mdl-button", "mdl-js-button", "mdl-button--raised", "mdl-js-ripple-effect",
             "mdl-button--colored");
 
-        var cancel = $(dialogContainer).find(".new-folder-cancel")[0];
+        let cancel = $(dialogContainer).find(".dialog-new-folder-cancel")[0];
         cancel.classList.add("mdl-button", "mdl-js-button", "mdl-js-ripple-effect");
+    } else if (dialogName === "error") {
+        let ok = $(dialogContainer).find(".dialog_error_ok")[0];
+        ok.classList.add("mdl-button", "mdl-js-button", "mdl-button--raised", "mdl-js-ripple-effect",
+            "mdl-button--colored");
     }
 };
 

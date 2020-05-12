@@ -4,3 +4,10 @@ mdlScript.toggleAttribute("defer", true);
 mdlScript.setAttribute("src", getThemeScript("material.min"));
 
 document.head.append(mdlScript);
+
+var buildActionPanelDirectoryListSeparator = function() {
+    var s = document.createElement("div");
+    s.classList.add("folder_separator", "material-icons");
+    s.innerText = "keyboard_arrow_right";
+    return s;
+}

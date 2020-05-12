@@ -21,15 +21,27 @@
     font-size: medium;
 }
 
-#action_panel .ap_left > div {
-    /*position: relative;*/
-    /*bottom: 4px;*/
+#action_panel .ap_left .ap_directory {
+    display: flex;
+    align-items: center;
+}
+
+#ap_directory_list {
+    display: flex;
+    align-items: center;
+}
+
+#ap_directory_list .folder_separator {
+    margin: 0 2px;
+}
+
+#ap_directory_list .main {
+    margin-left: 8px;
     font-weight: bold;
 }
 
-#action_panel .ap_left .ap_directory > * {
-    display: inline-block;
-    vertical-align: middle;
+#ap_directory_list [data-target-directory]:not(:nth-last-child(1)) {
+    cursor: pointer;
 }
 
 #action_panel .ap_right, .mdl_ico {

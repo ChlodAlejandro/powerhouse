@@ -8,6 +8,10 @@
 
     --main-text-color: white;
     --main-action-text-color: white;
+
+    --dialog-container-bg: rgba(0, 0, 0, 0.5);
+    --dialog-bg: #eee;
+    --dialog-text-color: black;
 }
 
 body {

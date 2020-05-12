@@ -1,4 +1,4 @@
-#files[data-layout="grid"] {
+#files[data-layout="grid"] #fileList {
     margin: 16px 0;
     display: flex;
     justify-content: center;
@@ -10,7 +10,7 @@
     display: none;
 }
 
-#files[data-layout="grid"] .file {
+#files[data-layout="grid"] #fileList .file {
     width: 128px;
     min-height: 128px;
     background-color: white;
@@ -20,21 +20,21 @@
     transition: background-color 0.5s ease, transform 0.2s ease;
 }
 
-#files[data-layout="grid"] .file:hover {
+#files[data-layout="grid"] #fileList .file:hover {
     background-color: #ccc;
     cursor: pointer;
 }
 
-#files[data-layout="grid"] .file:active {
+#files[data-layout="grid"] #fileList .file:active {
     transform: scale(0.98);
 }
 
-#files[data-layout="grid"] .file .file_icon {
+#files[data-layout="grid"] #fileList .file .file_icon {
     width: 100%;
     height: auto;
 }
 
-#files[data-layout="grid"] .file .file_name {
+#files[data-layout="grid"] #fileList .file .file_name {
     -moz-user-select: none;
     -ms-user-select: none;
     -webkit-user-select: none;
@@ -57,10 +57,10 @@
     text-overflow: ellipsis;
 }
 
-#files[data-layout="grid"] .file .file_type,
-#files[data-layout="grid"] .file .file_size,
-#files[data-layout="grid"] .file .file_mtime,
-#files[data-layout="grid"] .file .file_ctime {
+#files[data-layout="grid"] #fileList .file .file_type,
+#files[data-layout="grid"] #fileList .file .file_size,
+#files[data-layout="grid"] #fileList .file .file_mtime,
+#files[data-layout="grid"] #fileList .file .file_ctime {
     display: none;
 }
 

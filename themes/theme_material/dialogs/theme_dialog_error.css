@@ -1,0 +1,77 @@
+.dialog_error .dialog_error_header {
+    display: flex;
+
+    align-items: center;
+}
+
+.dialog_error .dialog_error_icon {
+    height: 64px;
+    width: auto;
+}
+
+.dialog_error .dialog_error_title {
+    display: inline-block;
+    margin-left: 16px;
+}
+
+.dialog_error .dialog_error_content {
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 16px 0;
+}
+
+.dialog_error .dialog_error_footer {
+    text-align: right;
+}
+
+.dialog_error .dialog_error_footer button {
+    margin-left: 8px;
+}
+
+/* The following depend on the type of error. */
+
+.dialog_error .powerhouse-error .dialogError_main {
+    margin: 16px 0;
+    display: flex;
+
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog_error .powerhouse-error .dialogError_name {
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.dialog_error .powerhouse-error .dialogError_code {
+    color: gray;
+    font-weight: bold;
+}
+
+.dialog_error .client-error .dialogError_description {
+    margin: 16px 0;
+
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.dialog_error .client-error .dialogError_trace {
+    padding: 8px;
+    min-height: 10vh;
+    max-height: 50vh;
+    width: 50vw;
+    border-radius: 10px;
+    overflow: auto;
+    overflow-wrap: break-word;
+    white-space: pre-line;
+
+    font-size: small;
+    line-height: 1em;
+    font-family: monospace;
+    background-color: rgba(0, 0, 0, 0.2);
+}

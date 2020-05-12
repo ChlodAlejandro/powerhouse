@@ -52,6 +52,21 @@ define("POWERHOUSE_APPEARANCE_THEME", "material");
 // POWERHOUSE FILE STORAGE AND MANAGEMENT
 
 /**
+ * POWERHOUSE_FILES_SHORTHAND
+ *
+ * The shorthand directory used to refer to directories inside
+ * of your installation. You may want to block access to this
+ * folder using a robots.txt file.
+ *
+ * You can understand more about the shorthand directory by
+ * visiting the README file inside of the `i` directory.
+ *
+ * Default: i
+ * Suggested: i
+ **/
+define("POWERHOUSE_FILES_SHORTHAND", "i");
+
+/**
  * POWERHOUSE_FILES_NOHIDDEN
  *
  * Prevent the upload, download, preview, and access of files that

@@ -1,28 +1,32 @@
 <?php
 require_once "../env.php";
+?>
+const POWERHOUSE_HTTP_ROOT = "<?php echo POWERHOUSE_HTTP_ROOT ?>";
+const POWERHOUSE_DEV_PAGE = "<?php echo POWERHOUSE_DEV_PAGE ?>";
+const POWERHOUSE_FILES_SHORTHAND = "<?php echo POWERHOUSE_FILES_SHORTHAND ?>";
 
-echo "const POWERHOUSE_HTTP_ROOT = \"" . POWERHOUSE_HTTP_ROOT . "\";" . PHP_EOL;
-echo "const POWERHOUSE_DEV_PAGE = \"" . POWERHOUSE_DEV_PAGE . "\";" . PHP_EOL;
+function getThemeCSS(subfolder, ruleset) {
+    if (ruleset === undefined) {
+        ruleset = subfolder;
+        subfolder = undefined;
+    }
+    return `${POWERHOUSE_HTTP_ROOT}/themes/theme_<?php echo POWERHOUSE_APPEARANCE_THEME ?>/`
+        + (subfolder ? `${subfolder}/` : "") + `theme_${ruleset}.css`;
+}
 
-// TODO DIRECTORY THING
-echo "const phDirectory = \"" . "/" . "\";" . PHP_EOL;
+function getThemeScript(subfolder, script) {
+    if (script === undefined) {
+        script = subfolder;
+        subfolder = undefined;
+    }
+    return `${POWERHOUSE_HTTP_ROOT}/themes/theme_<?php echo POWERHOUSE_APPEARANCE_THEME ?>/scripts/`
+        + (subfolder ? `${subfolder}/` : "") + `${script}.js`;
+}
 
-echo PHP_EOL;
+function getPath(file) {
+    return `${POWERHOUSE_HTTP_ROOT}/${file}`;
+}
 
-echo "function getThemeCSS(ruleset) {" . PHP_EOL;
-echo "    return `\${POWERHOUSE_HTTP_ROOT}/themes/theme_"
-    . POWERHOUSE_APPEARANCE_THEME ."/theme_\${ruleset}.css`" . PHP_EOL;
-echo "}" . PHP_EOL;
-
-echo PHP_EOL;
-
-echo "function getThemeScript(script) {" . PHP_EOL;
-echo "    return `\${POWERHOUSE_HTTP_ROOT}/themes/theme_"
-    . POWERHOUSE_APPEARANCE_THEME ."/scripts/\${script}.js`" . PHP_EOL;
-echo "}" . PHP_EOL;
-
-echo PHP_EOL;
-
-echo "function getPath(file) {" . PHP_EOL;
-echo "    return `\${POWERHOUSE_HTTP_ROOT}/\${file}`" . PHP_EOL;
-echo "}" . PHP_EOL;
+function getThemePath(file) {
+    return `${POWERHOUSE_HTTP_ROOT}/themes/theme_<?php echo POWERHOUSE_APPEARANCE_THEME ?>/${file}`;
+}
