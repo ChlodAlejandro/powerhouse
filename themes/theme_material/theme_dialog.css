@@ -1,4 +1,6 @@
 .dialog_container {
+    z-index: 20;
+
     background-color: var(--dialog-container-bg);
 
     position: fixed;
@@ -13,6 +15,7 @@
 }
 
 .dialog {
+    z-index: 21;
     min-width: 400px;
     min-height: 160px;
     padding: 32px;

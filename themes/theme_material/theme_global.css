@@ -2,7 +2,9 @@
 @import url("fonts.css");
 
 :root {
+
     --main-bg-color: #0e2231;
+    --main-bg-accent: #17364e;
     --main-accent-color: rgb(83,109,254);
     --main-accent-darker: rgb(60, 80, 186);
 
@@ -25,17 +27,6 @@ body {
     -ms-user-select: none;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
-}
-
-header {
-    background-color: var(--main-accent-color);
-}
-
-header img {
-    box-sizing: border-box;
-    height: 75px;
-    width: auto;
-    padding: 16px;
 }
 
 .mdl_ico {

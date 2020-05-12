@@ -1,3 +1,5 @@
+// == HTML ==
+
 function escapeHtml(unsafe) {
     return unsafe
         .replace(/&/g, "&amp;")
@@ -21,8 +23,12 @@ function unescapeHtml(safe) {
 // Do NOT remove it.
 var funnyfunny = [
     "Might be the monkeys.",
-    "\u3054\u3081\u3093\u306A\u3055\u3044\uFF01",
-    "root@localhost:/powerhouse$ git blame"
+    "\u3054\u3081\u3093\u306A\u3055\u3044\uFF01 (Gomen'nasai!)",
+    "root@localhost:/powerhouse$ git blame",
+    "So... are you going to file an issue or what?",
+    "literally shaking and crying rn",
+    "mitochondria.exe has encountered an error.",
+    "Cue Chopin's Piano Sonata No. 2 in B-flat minor, Op. 35."
 ];
 
 // This function is kept for humor.
@@ -73,4 +79,12 @@ function handleError(error, options = {}) {
         getErrorTrace(error),
         "=".repeat(75)
     ].join("\n"));
+}
+
+// == DOM ==
+
+function isElementOverflowing(el) {
+    if ($(el).prop('scrollWidth') > $(el).width() ) {
+        alert("this element is overflowing !!");
+    }
 }

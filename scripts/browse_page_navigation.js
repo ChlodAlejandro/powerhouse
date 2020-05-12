@@ -1,11 +1,11 @@
 var previousDirectories = [CURRENT_DIRECTORY];
 
 function cleanCurrentDirectory() {
-    var leadingSlashClear = /\/+(.+?)/g.exec(CURRENT_DIRECTORY);
+    var leadingSlashClear = /^\/+(.+?)/g.exec(CURRENT_DIRECTORY);
     if (leadingSlashClear !== null)
         CURRENT_DIRECTORY = leadingSlashClear[1];
 
-    var trailingSlashClear = /(.+?)\/+/g.exec(CURRENT_DIRECTORY);
+    var trailingSlashClear = /(.+?)\/+$/g.exec(CURRENT_DIRECTORY);
     if (trailingSlashClear !== null)
         CURRENT_DIRECTORY = trailingSlashClear[1];
 }
@@ -17,6 +17,7 @@ function getTitle(directoryPath) {
 }
 
 function enterDirectory(directoryPath) {
+    console.log("Entering " + directoryPath + "...");
     var pageTitle = getTitle(directoryPath);
     window.history.pushState({
         page: previousDirectories.length
@@ -30,6 +31,8 @@ function enterDirectory(directoryPath) {
     // noinspection JSIgnoredPromiseFromCall
     updateFileList();
     buildActionPanelDirectoryList(CURRENT_DIRECTORY);
+
+    triggerCallbacks("directoryChanged", CURRENT_DIRECTORY);
 }
 
 window.onpopstate = function(e){
@@ -46,6 +49,7 @@ window.onpopstate = function(e){
         // noinspection JSIgnoredPromiseFromCall
         updateFileList();
         buildActionPanelDirectoryList(CURRENT_DIRECTORY);
+
+        triggerCallbacks("directoryChanged", CURRENT_DIRECTORY);
     }
-    console.log(previousDirectories);
 };

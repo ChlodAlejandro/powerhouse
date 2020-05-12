@@ -1,4 +1,7 @@
 #action_panel {
+    width: 100%;
+    height: 50px;
+
     color: var(--main-action-text-color);
     display: flex;
     justify-content: space-between;
@@ -18,15 +21,27 @@
 }
 
 #action_panel .ap_left {
+    overflow: hidden;
+    flex: 1;
+
+    width: calc(100vw - (1.2em * 4));
     font-size: medium;
 }
 
 #action_panel .ap_left .ap_directory {
+    overflow: hidden;
+
     display: flex;
     align-items: center;
 }
 
+#action_panel .ap_left #ap_home {
+    width: 1.2em;
+}
+
 #ap_directory_list {
+    width: calc(100% - 1.2em);
+
     display: flex;
     align-items: center;
 }
@@ -40,6 +55,29 @@
     font-weight: bold;
 }
 
+#ap_directory_list #ap_directory_list_expand {
+    cursor: pointer;
+
+    border-radius: 50%;
+    color: var(--main-accent-darker);
+    background-color: var(--main-text-color);
+}
+
+#ap_directory_list_dropdown li {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+}
+
+#ap_directory_list_dropdown li .icon {
+    margin-right: 8px;
+}
+
+#ap_directory_list [data-target-directory] {
+    white-space: nowrap;
+}
+
 #ap_directory_list [data-target-directory]:not(:nth-last-child(1)) {
     cursor: pointer;
 }
@@ -49,15 +87,18 @@
 }
 
 #action_panel .ap_right {
+    flex: initial;
+    width: calc(1.2em * 4);
     font-size: 32px;
     line-height: 1em;
     letter-spacing: 0.05em;
 }
 
 #action_panel .ap_right > a {
-    height: 1em;
-    width: 1em;
-    padding: 4px;
+    box-sizing: border-box;
+    height: 1.2em;
+    width: 1.2em;
+    padding: 0.1em;
 
     border-radius: 0.2em;
     transition: background-color 0.2s ease;
@@ -66,3 +107,4 @@
 #action_panel .ap_right > a:hover {
     background-color: rgba(0, 0, 0, 0.2);
 }
+

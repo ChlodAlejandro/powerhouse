@@ -17,7 +17,7 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
         <title>Powerhouse</title>
 
         <?php
-		$requiredStyles = ["action_panel", "dialog", "files"];
+		$requiredStyles = ["browse", "action_panel", "dialog", "files"];
 
 		require POWERHOUSE_DIR_ROOT . "/widgets/header_preload.php";
 		?>
@@ -83,7 +83,6 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
 		<!-- Files List -->
 
 		<div id="files" data-layout="grid" data-sort="alpha">
-<!--		<div id="files" class="files_layout_details">-->
 			<div class="file files_header">
 				<span class="file_icon"></span>
 				<span class="file_name">Name</span>
@@ -162,12 +161,14 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
 <!--		</script>-->
 		<?php echo TagGenerator::getRootScript("scripts/browse_uploader") ?>
         <?php echo TagGenerator::getRootScript("scripts/browse_action_panel") ?>
+        <?php echo TagGenerator::getThemeScript("action-panel-hooks") ?>
 		<script>
             buildActionPanelDirectoryList(CURRENT_DIRECTORY);
             updateFileList();
 		</script>
+
+        <?php require POWERHOUSE_DIR_ROOT . "/widgets/body_postload.php"; ?>
     </body>
-    <?php require POWERHOUSE_DIR_ROOT . "/widgets/body_postload.php"; ?>
 
 <!--
 

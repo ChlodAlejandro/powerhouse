@@ -1,0 +1,15 @@
+header {
+    background-color: var(--main-accent-color);
+    height: 75px;
+}
+
+header img {
+    box-sizing: border-box;
+    height: 75px;
+    width: auto;
+    padding: 16px;
+}
+
+body {
+    overflow: hidden;
+}

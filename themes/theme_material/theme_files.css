@@ -1,9 +1,30 @@
+#files {
+    box-sizing: border-box;
+    height: calc(100vh - 75px - 50px);
+    overflow: auto;
+}
+
+#files .notice {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5vmin 0;
+    width: 100%;
+}
+
+#files .notice .notice-summary {
+    margin: 4px 0;
+}
+
 #files[data-layout="grid"] #fileList {
-    margin: 16px 0;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
+
+    padding: 16px 0 16px 0;
 }
 
 #files[data-layout="grid"] .files_header {
@@ -87,10 +108,20 @@
 }
 
 #files[data-layout="details"] .files_header {
+    background-color: var(--main-bg-accent);
+    position: sticky;
+    top: 0;
+
+    z-index: 5;
+
     font-size: medium;
     font-weight: bold;
 
     padding: 16px 8px;
+}
+
+#files[data-layout="details"] .files_header span {
+    height: 1.2em;
 }
 
 #files[data-layout="details"] .file:not(.files_header):hover {

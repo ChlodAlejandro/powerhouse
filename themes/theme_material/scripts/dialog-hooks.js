@@ -1,4 +1,4 @@
-var dialogPreProcess = (dialogName, dialogContainer) => {
+registerCallbacks("dialogPreProcess", (dialogName, dialogContainer) => {
     if (dialogName === "newFolder") {
 /*
 <div id="dialogNewFolderContainer" class="dialog_container">
@@ -34,8 +34,8 @@ var dialogPreProcess = (dialogName, dialogContainer) => {
         ok.classList.add("mdl-button", "mdl-js-button", "mdl-button--raised", "mdl-js-ripple-effect",
             "mdl-button--colored");
     }
-};
+});
 
-var dialogPostProcess = (dialogName, dialogContainer) => {
+registerCallbacks("dialogPostProcess", (dialogName, dialogContainer) => {
     componentHandler.upgradeDom();
-}
+});

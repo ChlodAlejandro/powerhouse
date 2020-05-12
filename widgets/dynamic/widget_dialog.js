@@ -90,13 +90,11 @@ class DialogWidget {
             dialog.appendChild(child);
         dialog_container.appendChild(dialog);
 
-        if (typeof dialogPreProcess === "function")
-            dialogPreProcess(this.name, dialog_container);
+        triggerCallbacks("dialogPreProcess", this.name, dialog_container);
 
         document.body.append(dialog_container);
 
-        if (typeof dialogPostProcess === "function")
-            dialogPostProcess(this.name, dialog_container);
+        triggerCallbacks("dialogPostProcess", this.name, dialog_container);
     }
 
 }

@@ -55,7 +55,6 @@ function handleActionPanelDialog(target) {
 
 var options = $("#ap_options").children();
 
-console.log(options);
 options.each((i, e) => {
     switch (e.getAttribute("data-ap-option-type")) {
         case "select": {
@@ -70,25 +69,7 @@ options.each((i, e) => {
 
 });
 
-//<div id="ap_directory_list">
-//     <div class="main" data-target-directory="">Main folder</div>
-//     <div class="folder_separator material-icons">keyboard_arrow_right</div>
-//     <div data-target-directory="images">images</div>
-//     <div class="folder_separator material-icons">keyboard_arrow_right</div>
-//     <div  data-target-directory="images/sizt">sizt</div>
-// </div>
-
-if (buildActionPanelDirectoryListSeparator === undefined) {
-    var buildActionPanelDirectoryListSeparator = function() {
-        var s = document.createElement("div");
-        s.classList.add("folder_separator");
-        s.innerText = ">";
-        return s;
-    }
-}
-
 function buildActionPanelDirectoryList(targetDirectory) {
-    var parts = targetDirectory.split("/");
     var directoryList = document.getElementById("ap_directory_list");
 
     var m = document.createElement("div");
@@ -116,14 +97,14 @@ function buildActionPanelDirectoryList(targetDirectory) {
     directoryList.innerHTML = "";
     for (var t in targets) {
         if (targets.hasOwnProperty(t)) {
-            console.log(targets[t]);
             directoryList.appendChild(targets[t]);
-            directoryList.appendChild(buildActionPanelDirectoryListSeparator());
+            directoryList.appendChild(callHandler("buildActionPanelDirectoryListSeparator"));
         }
     }
     directoryList.removeChild(directoryList.lastChild);
 
     upgradeActionPanelDirectoryList();
+    triggerCallbacks("actionPanelDirectoryPostBuild");
 }
 
 function upgradeActionPanelDirectoryList() {
