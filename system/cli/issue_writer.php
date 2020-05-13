@@ -170,6 +170,10 @@ function extractDefinitions($sourceFile) {
     return $definitions;
 }
 
+function dosToUnixFileEndings($content) {
+    return str_replace("\r\n", "\n", $content);
+}
+
 $skipped = [];
 
 // Skip configuration checks?
@@ -206,7 +210,7 @@ $timeouts = [10, 20, 30, 45, 60, 60, 60, 120, 120, 120];
 do {
     do {
         outln("Downloading default \"const.php\"... (try " . ($downloadTries + 1) . " of 10)");
-        $defaultConstFile = downloadFile($defaultConstURL);
+        $defaultConstFile = dosToUnixFileEndings(downloadFile($defaultConstURL));
 
         if ($defaultConstFile) break;
         else outln("An error occurred downloading the default \"const.php\" file.");
@@ -219,7 +223,7 @@ do {
 
     do {
         outln("Downloading default \"env.php\"... (try " . ($downloadTries + 1) . " of 10)");
-        $defaultEnvFile = downloadFile($defaultEnvURL);
+        $defaultEnvFile = dosToUnixFileEndings(downloadFile($defaultEnvURL));
         if ($defaultEnvFile) break;
         else outln("An error occurred downloading the default \"env.php\" file.");
         outln("Trying again in " . $timeouts[$downloadTries] . " seconds...");
@@ -266,8 +270,8 @@ do {
                     outln("When you're done, press the ENTER key to continue.");
                     in();
 
-                    $defaultConstFile = file_get_contents(__DIR__ . "/defaults/const.php");
-                    $defaultEnvFile = file_get_contents(__DIR__ . "/defaults/env.default.php");
+                    $defaultConstFile = dosToUnixFileEndings(file_get_contents(__DIR__ . "/defaults/const.php"));
+                    $defaultEnvFile = dosToUnixFileEndings(file_get_contents(__DIR__ . "/defaults/env.default.php"));
                     break;
                 }
                 case "e":
@@ -334,14 +338,14 @@ if (substr($envSyntaxCheck, 0, 25) != "No syntax errors detected") {
         new Exception($envSyntaxCheck));
 } else $checklist["env_valid"] = true;
 
-$actualConstFile = file_get_contents($constLocation);
-$actualEnvFile = file_get_contents($envLocation);
+$actualConstFile = dosToUnixFileEndings(file_get_contents($constLocation));
+$actualEnvFile = dosToUnixFileEndings(file_get_contents($envLocation));
 
 $actualConst = extractDefinitions($actualConstFile);
 $actualEnv = extractDefinitions($actualEnvFile);
 
-$checklist["const_unchanged"] = sha1($defaultConstFile) == sha1($actualConstFile);
-$checklist["env_changed"] = sha1($defaultEnvFile) != sha1($actualEnvFile);
+$checklist["const_unchanged"] = trim($defaultConstFile) == trim($actualConstFile);
+$checklist["env_changed"] = trim($defaultEnvFile) != trim($actualEnvFile);
 
 if (isset($actualEnv["POWERHOUSE_CONFIGURED"]) || $actualEnv["POWERHOUSE_CONFIGURED"] == "true") {
     $checklist["env_primed"] = true;
