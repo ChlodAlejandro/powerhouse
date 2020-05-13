@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../../../env.php";
+require_once __DIR__ . "/../../../const.php";
 require_once __DIR__ . "/../APIEndpoint.php";
 require_once __DIR__ . "/../utility/FileCheckpoints.php";
 

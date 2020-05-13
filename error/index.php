@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/../env.php";
+require_once __DIR__ . "/../const.php";
 require_once __DIR__ . "/../widgets/utilities/TagGenerator.php";
 
 function parseError($error) {

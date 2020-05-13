@@ -11,6 +11,11 @@
     Deny from all
 </Files>
 
+<Files "env.default.php">
+    Order deny,allow
+    Deny from all
+</Files>
+
 <Files "const.php">
     Order deny,allow
     Deny from all

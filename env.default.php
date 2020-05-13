@@ -1,7 +1,15 @@
 <?php
-
-// Load the non-configurable constants.
-require_once "const.php";
+/**
+ * POWERHOUSE_CONFIGURED
+ *
+ * If you want to use this file and get straight to using
+ * Powerhouse without installation, change the following
+ * into a `true`.
+ *
+ * Default: false
+ * Suggested: true
+ */
+define("POWERHOUSE_CONFIGURED", false);
 
 // The following are configurable constants. You may change them.
 // Please refer to the documentation before changing most of these.
@@ -19,7 +27,7 @@ require_once "const.php";
  * Default: /
  * Suggested: /
  **/
-define("POWERHOUSE_HTTP_ROOT", "/PROJECTS/powerhouse");
+define("POWERHOUSE_HTTP_ROOT", "/");
 
 /**
  * POWERHOUSE_DIR_FILES
@@ -34,7 +42,7 @@ define("POWERHOUSE_HTTP_ROOT", "/PROJECTS/powerhouse");
  * Default: /var/ph_files
  * Suggested: [anywhere]
  **/
-define("POWERHOUSE_DIR_FILES", POWERHOUSE_DIR_ROOT . "/old/files");
+define("POWERHOUSE_DIR_FILES", "/var/ph_files");
 
 // POWERHOUSE APPEARANCE AND THEME
 
@@ -115,7 +123,3 @@ define("POWERHOUSE_FILES_NOUPLOADS", false);
  * Suggested: false
  */
 define("POWERHOUSE_FILES_PRIVILEGED", false);
-
-// Verify the configuration values.
-require __DIR__ . "/system/verify_file_directory.php";
-FileDirectoryVerifier::verify();

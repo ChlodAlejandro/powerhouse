@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../env.php";
+require_once __DIR__ . "/../const.php";
 require_once __DIR__ . "/utilities/TagGenerator.php";
 
 echo '<!-- Auto-generated code. Expect mess. -->' . PHP_EOL;

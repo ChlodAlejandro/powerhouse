@@ -7,7 +7,7 @@
 if (!isset($CD))
 	$CD = "";
 
-require_once __DIR__ . "/../../env.php";
+require_once __DIR__ . "/../../const.php";
 require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
 ?>
 <!DOCTYPE html>

@@ -1,5 +1,5 @@
 <?php
-require_once "../env.php";
+require_once "../const.php";
 ?>
 const POWERHOUSE_HTTP_ROOT = "<?php echo POWERHOUSE_HTTP_ROOT ?>";
 const POWERHOUSE_DEV_PAGE = "<?php echo POWERHOUSE_DEV_PAGE ?>";
