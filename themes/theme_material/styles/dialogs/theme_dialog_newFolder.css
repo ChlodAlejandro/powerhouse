@@ -1,0 +1,24 @@
+#dialogNewFolder .dialog-new-folder-name-input {
+    width: 100%;
+}
+
+/*#dialogNewFolder .dialog-new-folder-submit {*/
+/*    float: right;*/
+/*}*/
+
+#dialogNewFolder .dialog-new-folder-actions {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+#dialogNewFolder .dialog-new-folder-submit_container {
+    display: flex;
+    align-items: center;
+}
+
+#dialogNewFolder .dialog-new-folder-load_container {
+    width: 28px;
+    height: 28px;
+    margin-right: 16px;
+}

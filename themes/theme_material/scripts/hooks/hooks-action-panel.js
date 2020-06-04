@@ -49,7 +49,8 @@ registerCallbacks("actionPanelDirectoryPostBuild", () => {
             let t_n = document.createElement("span");
 
             t.classList.add("mdl-menu__item");
-            t.setAttribute("data-target-directory", target.getAttribute("data-target-directory"));
+            t.setAttribute("data-target-directory",
+                target.getAttribute("data-target-directory"));
 
             t_i.classList.add("icon", "material-icons");
             t_i.innerHTML = "folder";
@@ -72,15 +73,6 @@ registerCallbacks("actionPanelDirectoryPostBuild", () => {
 
         document.body.appendChild(d);
 
-        componentHandler.upgradeDom();
+        componentHandler.upgradeElement(d);
     }
-
-
-    // probably does this in a moment
-    //
-    // check if overflowing
-    // if overflowing, get amount of overflowing elements + 1, then store
-    // create ellipsis dropdown
-    // append ellipsis dropdown and include information of directories
-    // make sure to preserve onclicks
 });

@@ -1,16 +1,3 @@
-// <div class="tooltip" data-target-element-id="ap_home">
-//     Return to main directory
-// </div>
-// <div class="tooltip" data-target-element-id="dialogOpen_upload">
-//     Upload
-//     </div>
-//     <div class="tooltip" data-target-element-id="dialogOpen_newFolder">
-//     New Folder
-// </div>
-// <div class="tooltip" data-target-element-id="selectOpen_sort">
-//     Sort Type
-// </div>
-
 (async () => {
     // Please keep these in sequence. Thanks.
 
@@ -18,6 +5,7 @@
     $(".icon").each((i, e) => {
         e.classList.add("material-icons");
     });
+
     /* 2 */
     $("[data-tooltip]").each((i, e) => {
         var target = $(e);
@@ -34,6 +22,7 @@
 
         $(tooltip).insertAfter(document.body.lastChild);
     });
+
     /* 3 */
     $(".tooltip").each((i, e) => {
         e.classList.add("mdl-tooltip");

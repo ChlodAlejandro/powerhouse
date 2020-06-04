@@ -27,6 +27,7 @@ class DialogNewFolder {
         f_i_l.setAttribute("for", "dialogNewFolder_folderName");
         f_i_l.innerText = "Folder Name";
 
+        f_b.classList.add("dialog-new-folder-actions");
         f_b_c.classList.add("dialog-new-folder-cancel");
         f_b_c.innerText = "Cancel";
         f_b_c.addEventListener("click", () => {

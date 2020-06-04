@@ -4,10 +4,8 @@ async function getFileList(directory = "") {
     if (directory !== "")
         queryParameters.append("dir", directory);
 
-    // noinspection JSUnresolvedVariable
-    var filesList;
+    var filesList = undefined;
 
-    // noinspection JSUnresolvedVariable
     await axios.get(
         `${POWERHOUSE_HTTP_ROOT}/api/GET/files`
             + (directory !== "" ? `?${queryParameters.toString()}` : ""),
@@ -23,11 +21,18 @@ async function getFileList(directory = "") {
     return filesList;
 }
 
-async function updateFileList() {
-    var files = await getFileList(CURRENT_DIRECTORY);
+async function updateFileList(directory = CURRENT_DIRECTORY) {
+    triggerCallbacks("updateFileListBegin");
+
+    var files = await getFileList(directory);
     if (files !== undefined) {
         var fileList = document.getElementById("fileList");
         fileList.innerHTML = "";
         buildFiles(fileList, files);
-    }
+    } else
+        triggerCallbacks("updateFileListError");
+
+    triggerCallbacks("updateFileListEnd");
+
+    return files !== undefined;
 }

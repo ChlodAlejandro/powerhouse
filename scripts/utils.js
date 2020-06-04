@@ -23,12 +23,12 @@ function unescapeHtml(safe) {
 // Do NOT remove it.
 var funnyfunny = [
     "Might be the monkeys.",
-    "\u3054\u3081\u3093\u306A\u3055\u3044\uFF01 (Gomen'nasai!)",
+    "\u3054\u3081\u3093\u306A\u3055\u3044\uFF01 (Sorry!)",
     "root@localhost:/powerhouse$ git blame",
     "So... are you going to file an issue or what?",
     "literally shaking and crying rn",
     "mitochondria.exe has encountered an error.",
-    "Cue Chopin's Piano Sonata No. 2 in B-flat minor, Op. 35."
+    "Cue Adagio."
 ];
 
 // This function is kept for humor.
@@ -46,7 +46,7 @@ function getErrorTrace(error) {
 
 function handleError(error, options = {}) {
     console.log(arguments);
-    if (error.isAxiosError && (typeof error.response.data === "object")) {
+    if (options.render || (error.isAxiosError && (typeof error.response.data === "object"))) {
         new DialogWidget("error", DialogError.buildDialog(error), {
             stackable: true
         }).render();
@@ -88,3 +88,9 @@ function isElementOverflowing(el) {
         alert("this element is overflowing !!");
     }
 }
+
+// == Catch all uncaught exceptions. ==
+window.onerror = function(message, source, lineno, colno, error) {
+    handleError(error);
+    return true;
+};

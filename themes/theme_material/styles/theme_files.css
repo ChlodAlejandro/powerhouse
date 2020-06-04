@@ -178,3 +178,37 @@
 #files[data-layout="details"] .file .file_ctime {
     display: none;
 }
+
+#files_loading_indicator {
+    position: absolute;
+
+    width: 100%;
+    height: 4px;
+}
+
+@keyframes fib_intro {
+    from {opacity: 0;}
+    to {opacity: 0.2;}
+}
+
+@keyframes fib_outro {
+    from {opacity: 0.2;}
+    to {opacity: 0;}
+}
+
+#files_interface_block {
+    position: absolute;
+    left: 0;
+    z-index: 20;
+    height: 100%;
+    width: 100%;
+    background-color: var(--main-accent-darker);
+
+    opacity: 0.2;
+
+    animation: fib_intro 0.2s ease;
+}
+
+#files_interface_block.closing {
+    animation: fib_outro 0.2s ease;
+}

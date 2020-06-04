@@ -55,6 +55,10 @@
     font-weight: bold;
 }
 
+#ap_directory_list div {
+    margin-top: auto;
+}
+
 #ap_directory_list #ap_directory_list_expand {
     cursor: pointer;
 

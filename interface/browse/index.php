@@ -31,7 +31,11 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
 		<script src="<?php echo POWERHOUSE_HTTP_ROOT ?>/scripts/browse_page_navigation.js"></script>
 
 		<!-- Required widgets go here. -->
-		<?php echo TagGenerator::getThemeScript("dialog-hooks") . PHP_EOL ?>
+        <?php echo TagGenerator::getThemeScript("handlers.global") . PHP_EOL ?>
+        <?php echo TagGenerator::getThemeScript("handlers.action-panel") . PHP_EOL ?>
+        <?php echo TagGenerator::getThemeScript("hooks.global") . PHP_EOL ?>
+		<?php echo TagGenerator::getThemeScript("hooks.dialog") . PHP_EOL ?>
+        <?php echo TagGenerator::getThemeScript("hooks.file-list") . PHP_EOL ?>
 		<?php echo TagGenerator::getRootScript("widgets/dynamic/widget_file") ?>
         <?php echo TagGenerator::getRootScript("widgets/dynamic/widget_dialog") ?>
         <?php echo TagGenerator::getRootScript("widgets/dynamic/widget_dialogError") ?>
@@ -94,7 +98,7 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
 
 			</div>
 		</div>
-
+		<?php if (false): ?>
 		<!-- Dialog Boxes -->
 <!--		<div id="dialogUploadContainer" class="dialog_container">-->
 <!--			<div id="dialogUpload" class="dialog">-->
@@ -159,9 +163,10 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
 <!--				});-->
 <!--			}-->
 <!--		</script>-->
+        <?php endif; ?>
 		<?php echo TagGenerator::getRootScript("scripts/browse_uploader") ?>
         <?php echo TagGenerator::getRootScript("scripts/browse_action_panel") ?>
-        <?php echo TagGenerator::getThemeScript("action-panel-hooks") ?>
+        <?php echo TagGenerator::getThemeScript("hooks.action-panel") ?>
 		<script>
             buildActionPanelDirectoryList(CURRENT_DIRECTORY);
             updateFileList();

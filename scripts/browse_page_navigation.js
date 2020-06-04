@@ -1,14 +1,24 @@
 var previousDirectories = [CURRENT_DIRECTORY];
 
-function cleanCurrentDirectory() {
-    var leadingSlashClear = /^\/+(.+?)/g.exec(CURRENT_DIRECTORY);
-    if (leadingSlashClear !== null)
-        CURRENT_DIRECTORY = leadingSlashClear[1];
+function cleanDirectoryPath(directory) {
+    var newPath = directory;
 
-    var trailingSlashClear = /(.+?)\/+$/g.exec(CURRENT_DIRECTORY);
+    var leadingSlashClear = /^\/+(.+?)/g.exec(newPath);
+    if (leadingSlashClear !== null)
+        newPath = leadingSlashClear[1];
+
+    var trailingSlashClear = /(.+?)\/+$/g.exec(newPath);
     if (trailingSlashClear !== null)
-        CURRENT_DIRECTORY = trailingSlashClear[1];
+        newPath = trailingSlashClear[1];
+
+    return newPath;
 }
+
+function cleanCurrentDirectory() {
+    CURRENT_DIRECTORY = cleanDirectoryPath(CURRENT_DIRECTORY);
+}
+
+cleanCurrentDirectory();
 
 function getTitle(directoryPath) {
     if (directoryPath.length === 0)
@@ -16,26 +26,34 @@ function getTitle(directoryPath) {
     else return directoryPath.split("/").pop() + " | Powerhouse";
 }
 
-function enterDirectory(directoryPath) {
-    console.log("Entering " + directoryPath + "...");
-    var pageTitle = getTitle(directoryPath);
-    window.history.pushState({
-        page: previousDirectories.length
-    }, pageTitle, `${POWERHOUSE_HTTP_ROOT}/${POWERHOUSE_FILES_SHORTHAND}/${directoryPath}`);
-    document.title = pageTitle;
+async function enterDirectory(directoryPath) {
+    var newDirectory = directoryPath;
+    console.log("Entering " + newDirectory + "...");
 
-    previousDirectories.push(directoryPath);
+    newDirectory = cleanDirectoryPath(directoryPath);
+    if (newDirectory === null || newDirectory === undefined)
+        newDirectory = directoryPath;
 
-    CURRENT_DIRECTORY = directoryPath;
-    cleanCurrentDirectory();
-    // noinspection JSIgnoredPromiseFromCall
-    updateFileList();
-    buildActionPanelDirectoryList(CURRENT_DIRECTORY);
+    if (await updateFileList(newDirectory)) {
+        var pageTitle = getTitle(newDirectory);
+        window.history.pushState({
+            page: previousDirectories.length
+        }, pageTitle, `${POWERHOUSE_HTTP_ROOT}/${POWERHOUSE_FILES_SHORTHAND}/${newDirectory}`);
+        document.title = pageTitle;
 
-    triggerCallbacks("directoryChanged", CURRENT_DIRECTORY);
+        previousDirectories.push(newDirectory);
+
+        CURRENT_DIRECTORY = newDirectory;
+        cleanCurrentDirectory();
+
+        buildActionPanelDirectoryList(CURRENT_DIRECTORY);
+        triggerCallbacks("directoryChanged", CURRENT_DIRECTORY);
+    } else {
+        console.log("Couldn't enter " + newDirectory + ".");
+    }
 }
 
-window.onpopstate = function(e){
+window.onpopstate = (e) => {
     console.log(e);
     console.log(previousDirectories);
     if (previousDirectories.length === 0) {

@@ -1,0 +1,22 @@
+{
+
+    "global": [
+        "global.js",
+        "inc/material.min.js"
+    ],
+
+    "handlers": {
+        "action-panel": "handlers/handlers-action-panel.js"
+    },
+
+    "hooks": {
+        "file-list": "hooks/hooks-file-list.js",
+        "dialog": "hooks/hooks-dialog.js",
+        "action-panel": "hooks/hooks-action-panel.js"
+    },
+
+    "body": {
+        "post-load": "body/post-load.js"
+    }
+
+}

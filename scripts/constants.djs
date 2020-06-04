@@ -10,7 +10,7 @@ function getThemeCSS(subfolder, ruleset) {
         ruleset = subfolder;
         subfolder = undefined;
     }
-    return `${POWERHOUSE_HTTP_ROOT}/themes/theme_<?php echo POWERHOUSE_APPEARANCE_THEME ?>/`
+    return `${POWERHOUSE_HTTP_ROOT}/themes/theme_<?php echo POWERHOUSE_APPEARANCE_THEME ?>/styles/`
         + (subfolder ? `${subfolder}/` : "") + `theme_${ruleset}.css`;
 }
 
@@ -39,9 +39,13 @@ function triggerCallbacks(name) {
         return;
     }
 
+    var outputs = [];
+
     if (ph_callbacks[name] !== undefined)
         for (let callback of ph_callbacks[name])
-            callback(...Array.from(arguments).slice(1))
+            outputs.push(callback(...Array.from(arguments).slice(1)));
+
+    return outputs;
 }
 
 function registerCallbacks(name, callback) {
@@ -56,18 +60,24 @@ var ph_handlers = {
         s.classList.add("folder_separator");
         s.innerText = ">";
         return s;
+    },
+    actionPanelSelect: function() {
+        console.log("Your Powerhouse theme does not support this function.");
     }
 };
 
 function callHandler(name) {
-    if (name === undefined) {
-        throw new Error("Attempt made to trigger unspecified handler.");
-    }
+    if (name === undefined) throw new Error("Attempt made to trigger unspecified handler.");
 
     if (ph_handlers[name] !== undefined)
         return ph_handlers[name](...Array.from(arguments).slice(1))
+    else
+        throw new Error("Attempt made to handle an unregistered handler. Has your theme registered this handler?\n\nConfused? Themes (in most cases) are supposed to register handlers. Handlers are theme-specific functions required by Powerhouse in order to make actions specific for that theme.");
 }
 
-function registerHandler(name, handler) {
+function registerHandler(name, handler, override = false) {
+    if (ph_handlers[name] !== undefined && !override)
+        throw new Error("Attempting to register a handler already registered previously.");
+
     ph_handlers[name] = handler;
 }

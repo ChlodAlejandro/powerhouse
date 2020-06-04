@@ -84,6 +84,15 @@ class APIException
         exit();
     }
 
+    public static function sanitizeTrace($traceArray) {
+        foreach ($traceArray as $traceIndex => $traceItem) {
+            if (isset($traceItem["file"]))
+                $traceArray[$traceIndex]["file"] =
+                    str_replace(POWERHOUSE_DIR_ROOT, "PH_ROOT", $traceItem["file"]);
+        }
+        return $traceArray;
+    }
+
     /**
      * Pull the details of an exception into a JSON-parsable array.
      * @param Exception $baseException The base exception
@@ -93,7 +102,7 @@ class APIException
         return [
             "message" => $baseException->getMessage(),
             "code" => $baseException->getCode(),
-            "trace" => $baseException->getTrace()
+            "trace" => self::sanitizeTrace($baseException->getTrace())
         ];
     }
 

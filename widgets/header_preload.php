@@ -16,7 +16,7 @@ echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
 echo '<script type="text/javascript" src="' . POWERHOUSE_HTTP_ROOT . '/scripts/constants.djs"></script>';
 
 // Other scripts
-echo '<script src="' . POWERHOUSE_HTTP_ROOT . '/scripts/utils.js"></script>';
+echo '<script type="text/javascript" src="' . POWERHOUSE_HTTP_ROOT . '/scripts/utils.js"></script>';
 
 // Theme CSS
 echo TagGenerator::getThemeCSS("global") . PHP_EOL;
@@ -24,7 +24,7 @@ echo TagGenerator::getThemeCSS("icons") . PHP_EOL;
 echo PHP_EOL;
 // Theme Scripts
 echo TagGenerator::getThemeScript("global") . PHP_EOL;
-echo TagGenerator::getThemeScript("header-preload") . PHP_EOL;
+echo TagGenerator::getThemeScript("header.pre-load") . PHP_EOL;
 
 // Required styles from theme
 if (isset($requiredStyles) && is_array($requiredStyles)) {
