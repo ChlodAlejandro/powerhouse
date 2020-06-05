@@ -47,8 +47,8 @@ class FileWidget {
 
         if (this.type !== "file") {
             file_container.classList.add("dir");
-            file_container.addEventListener("click", () => {
-                enterDirectory(
+            file_container.addEventListener("click", async () => {
+                await ph.navigation.enterDirectory(
                     `${CURRENT_DIRECTORY.length > 0 ? `${CURRENT_DIRECTORY}/` : ""}${this.name}`);
             });
         }

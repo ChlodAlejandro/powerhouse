@@ -84,7 +84,7 @@ class PowerhouseActionPanel {
                 continue;
             part.addEventListener("click", () => {
                 // noinspection JSIgnoredPromiseFromCall
-                enterDirectory(part.getAttribute("data-target-directory"));
+                ph.navigation.enterDirectory(part.getAttribute("data-target-directory"));
             });
         }
     }

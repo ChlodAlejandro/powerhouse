@@ -56,7 +56,7 @@ class PowerhousePageNavigator {
         if (newDirectory === null || newDirectory === undefined)
             newDirectory = directoryPath;
 
-        if (await this.updateFileList(newDirectory)) {
+        if (await ph.file_manager.updateFileList(newDirectory)) {
             var pageTitle = this.getDirectoryPageTitle(newDirectory);
             window.history.pushState({
                 page: this.previousDirectories.length
@@ -77,4 +77,4 @@ class PowerhousePageNavigator {
 
 }
 
-ph.page_navigation = new PowerhousePageNavigator();
+ph.navigation = new PowerhousePageNavigator();
