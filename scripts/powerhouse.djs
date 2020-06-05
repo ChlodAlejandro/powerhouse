@@ -5,6 +5,16 @@ const POWERHOUSE_HTTP_ROOT = "<?php echo POWERHOUSE_HTTP_ROOT ?>";
 const POWERHOUSE_DEV_PAGE = "<?php echo POWERHOUSE_DEV_PAGE ?>";
 const POWERHOUSE_FILES_SHORTHAND = "<?php echo POWERHOUSE_FILES_SHORTHAND ?>";
 
+const POWERHOUSE_ENDPOINTS = {
+    "GET": {
+        "files/list": "<?php echo POWERHOUSE_HTTP_ROOT ?>/api/GET/files/list.php"
+    },
+
+    "POST": {
+        "folder/create": "<?php echo POWERHOUSE_HTTP_ROOT ?>/api/POST/folder/create.php"
+    }
+}
+
 function getThemeCSS(subfolder, ruleset) {
     if (ruleset === undefined) {
         ruleset = subfolder;

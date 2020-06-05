@@ -32,8 +32,8 @@ define("POWERHOUSE_HTTP_ROOT", "/");
 /**
  * POWERHOUSE_DIR_FILES
  *
- * The location of where the files for Powerhouse would be stored,
- * relative to the Powerhouse root directory.
+ * The location of where the files for Powerhouse would be stored.
+ * This must be an absolute path.
  *
  * You may want to change this to something like "/var/files" or
  * something similar. It's best to keep the given directory outside
@@ -123,3 +123,25 @@ define("POWERHOUSE_FILES_NOUPLOADS", false);
  * Suggested: false
  */
 define("POWERHOUSE_FILES_PRIVILEGED", false);
+
+// POWERHOUSE SECURITY CONFIGURATION.
+
+/**
+ * POWERHOUSE_SECURITY_ALLOWROOT
+ *
+ * WARNING: UNDER NO CIRCUMSTANCES SHOULD YOU ENABLE THIS
+ * UNLESS YOUR SYSTEM IS HEAVILY RESTRICTED AND YOU
+ * UNDERSTAND THE ISSUES THAT DISABLING THIS OPTION
+ * MAY CAUSE.
+ *
+ * Allows Powerhouse to use the root as a valid directory.
+ * For Unix-based systems, this would be /, and for Windows
+ * based-systems, this would be the top folder of the drive
+ * where Powerhouse is installed.
+ *
+ * This is an EXTREMELY dangerous option. Enable with caution.
+ *
+ * Default: false
+ * Suggested: false
+ */
+define("POWERHOUSE_SECURITY_ALLOWROOT", false);

@@ -17,6 +17,12 @@ function handleActionPanelDialog(target) {
             });
             break;
         }
+        case "sort": {
+            target.addEventListener("click", () => {
+                new DialogWidget("sort", DialogSort.buildDialog()).render();
+            });
+            break;
+        }
         case "upload": {
 
             break;

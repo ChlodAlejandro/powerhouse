@@ -12,7 +12,7 @@ registerCallbacks("updateFileListBegin", () => {
     b.id = "files_interface_block";
     files.insertBefore(b, files.firstChild);
 
-    componentHandler.upgradeElement(p);
+    componentHandler.upgradeDom();
 });
 
 registerCallbacks("updateFileListEnd", () => {

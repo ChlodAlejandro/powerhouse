@@ -1,3 +1,17 @@
+// == Checks ==
+
+function u() {
+    for (var a of arguments)
+        if (a === undefined) return true;
+    return false;
+}
+
+function nou() {
+    for (var a of arguments)
+        if (a === undefined || a === null) return true;
+    return false;
+}
+
 // == HTML ==
 
 function escapeHtml(unsafe) {
@@ -15,6 +29,24 @@ function unescapeHtml(safe) {
         .replace(/&gt;/g, ">")
         .replace(/&quot;/g, "\"")
         .replace(/&#039;/g, "'");
+}
+
+// == Requests ==
+function serializeObject(object) {
+    const queryParameters = new URLSearchParams();
+
+    for (var key of Object.keys(object))
+        queryParameters.append(key, object[key]);
+
+    return queryParameters;
+}
+
+function serializeForm(formElement) {
+    var fields_array = $(formElement).serializeArray();
+    var fields_object = {};
+    for (var field of fields_array)
+        fields_object[field.name] = field.value;
+    return serializeObject(fields_object);
 }
 
 // == ERROR HANDLING ==
@@ -46,11 +78,16 @@ function getErrorTrace(error) {
 
 function handleError(error, options = {}) {
     console.log(arguments);
-    if (options.render || (error.isAxiosError && (typeof error.response.data === "object"))) {
+    if (options.render
+        || (options.render === undefined && (
+            (error.isAxiosError && !u(error.response) && (typeof error.response.data === "object"))
+            || ((typeof error.response.data === "object") && error.response.data.error))))
         new DialogWidget("error", DialogError.buildDialog(error), {
             stackable: true
         }).render();
 
+    if ((error.isAxiosError && !u(error.response) && (typeof error.response.data === "object"))
+        || !u(error.response) && ((typeof error.response.data === "object") && error.response.data.error)) {
         // override toString of error
         error.message = "Powerhouse API Error: " + error.response.data["error_info"]["summary"];
         error.stack = `PH Code: ${error.response.data["error_info"]["powerhouse_code"]}\n`
@@ -66,19 +103,21 @@ function handleError(error, options = {}) {
         }
     }
 
-    // noinspection JSUnresolvedVariable
-    console.error([
-        "=".repeat(75),
-        "An error occured!!!",
-        `// ${getFunnyFunny()}`,
-        "",
-        "If your copy of Powerhouse is unmodified, please report this",
-        "to the Powerhouse developers at " + POWERHOUSE_DEV_PAGE + ".",
-        "",
-        "A full stacktrace of the error is provided below:",
-        getErrorTrace(error),
-        "=".repeat(75)
-    ].join("\n"));
+
+    if (options.log || options.log === undefined)
+        // noinspection JSUnresolvedVariable
+        console.error([
+            "=".repeat(75),
+            "An error occured!!!",
+            `// ${getFunnyFunny()}`,
+            "",
+            "If your copy of Powerhouse is unmodified, please report this",
+            "to the Powerhouse developers at " + POWERHOUSE_DEV_PAGE + ".",
+            "",
+            "A full stacktrace of the error is provided below:",
+            getErrorTrace(error),
+            "=".repeat(75)
+        ].join("\n"));
 }
 
 // == DOM ==

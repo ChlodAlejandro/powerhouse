@@ -10,7 +10,17 @@ class APIException
         "400-DIR" => [
             "http_code" => 400,
             "message_short" => "Invalid Directory",
-            "message_long" => "The directory provided is not a valid directory."
+            "message_long" => "The directory provided is not a valid nor existing directory."
+        ],
+        "400-IFN" => [
+            "http_code" => 400,
+            "message_short" => "Invalid Filename",
+            "message_long" => "The provided file or folder name is not a valid name for a file or folder."
+        ],
+        "400-MIS" => [
+            "http_code" => 400,
+            "message_short" => "Missing Argument",
+            "message_long" => "The request is missing a required argument."
         ],
         "405" => [
             "http_code" => 405,
@@ -108,14 +118,15 @@ class APIException
 
     /**
      * Convert the array into a JSON-parsable object.
+     * @param null $additive
      * @return array An array that may be converted into a JSON format.
      */
-    public function toObject() {
+    public function toObject($additive = null) {
         $e = [
             "powerhouse_code" => $this->code,
             "http_code" => $this->httpCode,
             "summary" => $this->shortMessage,
-            "description" => $this->longMessage
+            "description" => $this->longMessage . ($additive != null ? " " . $additive : "")
         ];
         if ($this->baseException != null && DEBUG_MODE)
             $e["base"] = self::pullBaseExceptionDetails($this->baseException);

@@ -6,6 +6,7 @@ class DialogNewFolder {
         var t = document.createElement("h3");
 
         var f = document.createElement("form");
+        var f_p = document.createElement("input");
         var f_i = document.createElement("div");
         var f_i_i = document.createElement("input");
         var f_i_l = document.createElement("label");
@@ -17,13 +18,17 @@ class DialogNewFolder {
         f.name = "newFolderForm";
         f.setAttribute("method", "POST");
         // noinspection JSUnresolvedVariable
-        f.setAttribute("action", POWERHOUSE_HTTP_ROOT + "/api/POST/mkdir.php");
+        f.setAttribute("action", POWERHOUSE_ENDPOINTS.POST["folder/create"]);
         f.setAttribute("enctype", "application/x-www-form-urlencoded");
+
+        f_p.setAttribute("type", "hidden");
+        f_p.setAttribute("name", "parent");
+        f_p.setAttribute("value", currentDirectory);
 
         f_i.classList.add("dialog-new-folder-name-input");
         f_i_i.setAttribute("type", "text");
         f_i_i.setAttribute("id", "dialogNewFolder_folderName");
-        f_i_i.setAttribute("name", "ph_folderName");
+        f_i_i.setAttribute("name", "folder_name");
         f_i_l.setAttribute("for", "dialogNewFolder_folderName");
         f_i_l.innerText = "Folder Name";
 
@@ -45,6 +50,7 @@ class DialogNewFolder {
         f_i.appendChild(f_i_i);
         f_i.appendChild(f_i_l);
 
+        f.append(f_p);
         f.append(f_i);
         f.append(f_b);
 

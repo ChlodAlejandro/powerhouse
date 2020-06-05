@@ -34,7 +34,7 @@ registerHandler("actionPanelSelect", (target) => {
             }
 
             document.body.appendChild(menu);
-            componentHandler.upgradeElement(menu);
+            componentHandler.upgradeDom();
             break;
         }
         case "layoutSwitch": {
@@ -58,7 +58,7 @@ registerHandler("actionPanelSelect", (target) => {
             }
 
             document.body.appendChild(menu);
-            componentHandler.upgradeElement(menu);
+            componentHandler.upgradeDom();
             break;
         }
     }

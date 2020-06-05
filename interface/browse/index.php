@@ -36,10 +36,10 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
         <?php echo TagGenerator::getThemeScript("hooks.global") . PHP_EOL ?>
 		<?php echo TagGenerator::getThemeScript("hooks.dialog") . PHP_EOL ?>
         <?php echo TagGenerator::getThemeScript("hooks.file-list") . PHP_EOL ?>
-		<?php echo TagGenerator::getRootScript("widgets/dynamic/widget_file") ?>
-        <?php echo TagGenerator::getRootScript("widgets/dynamic/widget_dialog") ?>
-        <?php echo TagGenerator::getRootScript("widgets/dynamic/widget_dialogError") ?>
-        <?php echo TagGenerator::getRootScript("widgets/dynamic/widget_dialogNewFolder") ?>
+		<?php echo TagGenerator::getRootScript("widgets/dynamic/widget_file") . PHP_EOL  ?>
+        <?php echo TagGenerator::getRootScript("widgets/dynamic/widget_dialog") . PHP_EOL  ?>
+        <?php echo TagGenerator::getRootScript("widgets/dynamic/widget_dialogError") . PHP_EOL  ?>
+        <?php echo TagGenerator::getRootScript("widgets/dynamic/widget_dialogNewFolder") . PHP_EOL ?>
 
         <?php require POWERHOUSE_DIR_ROOT . "/widgets/header_postload.php"; ?>
     </head>
@@ -61,16 +61,16 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
 				</div>
 			</div>
 			<div id="ap_options" class="ap_right">
-				<a id="selectOpen_sort"
-				   class="selectDropdownButton"
-				   data-ap-option-type="select"
-				   data-selection="selectSortType"
-				   data-tooltip="Sort">list</a>
 				<a id="selectOpen_layout"
 				   class="selectDropdownButton"
 				   data-ap-option-type="select"
 				   data-selection="layoutSwitch"
 				   data-tooltip="Change Layout">apps</a>
+				<a id="dialogOpen_sort"
+				   class="selectDropdownButton"
+				   data-ap-option-type="dialog"
+				   data-dialog="sort"
+				   data-tooltip="Sort">list</a>
 				<a id="dialogOpen_newFolder"
 				   class="dialogButton"
 				   data-ap-option-type="dialog"
@@ -86,7 +86,7 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
 
 		<!-- Files List -->
 
-		<div id="files" data-layout="grid" data-sort="alpha">
+		<div id="files" data-layout="grid">
 			<div class="file files_header">
 				<span class="file_icon"></span>
 				<span class="file_name">Name</span>
@@ -164,6 +164,8 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
 <!--			}-->
 <!--		</script>-->
         <?php endif; ?>
+
+		<!-- Uploaders, etc. -->
 		<?php echo TagGenerator::getRootScript("scripts/browse_uploader") ?>
         <?php echo TagGenerator::getRootScript("scripts/browse_action_panel") ?>
         <?php echo TagGenerator::getThemeScript("hooks.action-panel") ?>

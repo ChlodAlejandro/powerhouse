@@ -73,6 +73,6 @@ registerCallbacks("actionPanelDirectoryPostBuild", () => {
 
         document.body.appendChild(d);
 
-        componentHandler.upgradeElement(d);
+        componentHandler.upgradeDom();
     }
 });

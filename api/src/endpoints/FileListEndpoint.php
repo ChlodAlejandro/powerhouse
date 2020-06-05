@@ -47,9 +47,9 @@ class FileListEndpoint extends APIEndpoint
             exit();
         }
 
-        $subdirectory = isset($_GET["dir"]) && strlen($_GET["dir"]) > 0 ? ("/" . $_GET["dir"]) : "";
+        $subdirectory = isset($_GET["dir"]) && strlen($_GET["dir"]) > 0 ? (DIRECTORY_SEPARATOR . $_GET["dir"]) : "";
 
-        $directory = POWERHOUSE_DIR_FILES . $subdirectory;
+        $directory = realpath(POWERHOUSE_DIR_FILES . $subdirectory);
         if (strlen($subdirectory) > 0 &&
                 (!FileCheckpoints::isValidFileName(basename($subdirectory))
                 || !FileCheckpoints::withinDirectory(POWERHOUSE_DIR_FILES, $directory))

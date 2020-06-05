@@ -13,6 +13,7 @@ class FileCheckpoints
      * @return boolean TRUE if the filename is a valid file name.
      */
     public static function isValidFileName($filename, $linuxOnly = false) {
+        if (!is_string($filename)) return false;
         if (strlen($filename) == 0)
             return false;
         if (strpos($filename, "/") !== false)

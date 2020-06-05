@@ -4,13 +4,13 @@ require_once __DIR__. "/APIException.php";
 class APIResponseBuilder
 {
 
-    public static function buildResponse($code, $response) {
+    public static function buildResponse($code, $response, $additive = null) {
         if ($response instanceof APIException) {
             http_response_code($response->httpCode);
             return json_encode([
                 "code" => $response->code,
                 "error" => true,
-                "error_info" => $response->toObject()
+                "error_info" => $response->toObject($additive)
             ]);
         } else if ($response instanceof Exception) {
             http_response_code(500);
@@ -19,7 +19,7 @@ class APIResponseBuilder
                 "error" => true,
                 "error_info" => (new APIException(
                     "500", null, $response
-                ))->toObject()
+                ))->toObject($additive)
             ]);
         } else {
             if (is_array($response)) {
@@ -40,7 +40,7 @@ class APIResponseBuilder
                 return json_encode([
                     "code" => $code,
                     "error" => intval(substr($code, 0, 1)) > 3,
-                    "error_info" => $exception->toObject()
+                    "error_info" => $exception->toObject($additive)
                 ]);
             }
         }
