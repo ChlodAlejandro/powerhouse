@@ -1,4 +1,4 @@
-registerCallbacks("updateFileListBegin", () => {
+ph.registerCallbacks("updateFileListBegin", () => {
     var action_panel = document.getElementById("action_panel");
     var files = document.getElementById("files");
 
@@ -15,7 +15,7 @@ registerCallbacks("updateFileListBegin", () => {
     componentHandler.upgradeDom();
 });
 
-registerCallbacks("updateFileListEnd", () => {
+ph.registerCallbacks("updateFileListEnd", () => {
     var loading_indicator = document.getElementById("files_loading_indicator");
     var files_interface_block = document.getElementById("files_interface_block");
 

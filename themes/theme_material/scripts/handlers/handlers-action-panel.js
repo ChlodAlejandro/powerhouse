@@ -7,7 +7,7 @@ const sort_types = {
     "ctime": "Created Time"
 };
 
-registerHandler("actionPanelSelect", (target) => {
+ph.registerHandler("actionPanelSelect", (target) => {
     switch (target.getAttribute("data-selection")) {
         case "selectSortType": {
             let menu = document.createElement("ul");

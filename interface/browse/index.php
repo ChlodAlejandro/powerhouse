@@ -170,8 +170,8 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
         <?php echo TagGenerator::getRootScript("scripts/browse_action_panel") ?>
         <?php echo TagGenerator::getThemeScript("hooks.action-panel") ?>
 		<script>
-            buildActionPanelDirectoryList(CURRENT_DIRECTORY);
-            updateFileList();
+            ph.action_panel.buildActionPanelDirectoryList(CURRENT_DIRECTORY);
+            ph.file_manager.updateFileList();
 		</script>
 
         <?php require POWERHOUSE_DIR_ROOT . "/widgets/body_postload.php"; ?>

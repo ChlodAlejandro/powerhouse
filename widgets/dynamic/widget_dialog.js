@@ -23,7 +23,7 @@ class DialogWidget {
             tag.id = (`dialogStylesheet_${dialogName}`);
             tag.setAttribute("type", "text/css");
             tag.setAttribute("rel", "stylesheet");
-            tag.setAttribute("href", getThemeCSS("dialogs", "dialog_" + dialogName));
+            tag.setAttribute("href", ph.asset_manager.getThemeCSS("dialogs", "dialog_" + dialogName));
 
             document.head.appendChild(tag);
         }
@@ -90,11 +90,11 @@ class DialogWidget {
             dialog.appendChild(child);
         dialog_container.appendChild(dialog);
 
-        triggerCallbacks("dialogPreProcess", this.name, dialog_container);
+        ph.triggerCallbacks("dialogPreProcess", this.name, dialog_container);
 
         document.body.append(dialog_container);
 
-        triggerCallbacks("dialogPostProcess", this.name, dialog_container);
+        ph.triggerCallbacks("dialogPostProcess", this.name, dialog_container);
     }
 
 }

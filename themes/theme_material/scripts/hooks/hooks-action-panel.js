@@ -1,4 +1,4 @@
-registerCallbacks("actionPanelDirectoryPostBuild", () => {
+ph.registerCallbacks("actionPanelDirectoryPostBuild", () => {
     var dl = document.querySelector("#ap_directory_list");
     $(document.getElementById("ap_directory_list_dropdown")).remove();
 
@@ -29,7 +29,7 @@ registerCallbacks("actionPanelDirectoryPostBuild", () => {
             return v.getAttribute("data-target-directory") !== null;
         });
 
-        dl.appendChild(callHandler("buildActionPanelDirectoryListSeparator"));
+        dl.appendChild(ph.callHandler("buildActionPanelDirectoryListSeparator"));
 
         var m = document.createElement("div");
         m.id = "ap_directory_list_expand";

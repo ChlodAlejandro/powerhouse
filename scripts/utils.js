@@ -81,7 +81,7 @@ function handleError(error, options = {}) {
     if (options.render
         || (options.render === undefined && (
             (error.isAxiosError && !u(error.response) && (typeof error.response.data === "object"))
-            || ((typeof error.response.data === "object") && error.response.data.error))))
+            || (!u(error.response) && (typeof error.response.data === "object") && error.response.data.error))))
         new DialogWidget("error", DialogError.buildDialog(error), {
             stackable: true
         }).render();

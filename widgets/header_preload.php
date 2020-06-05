@@ -13,7 +13,7 @@ echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
 
 // Page and installation constants.
 
-echo '<script type="text/javascript" src="' . POWERHOUSE_HTTP_ROOT . '/scripts/constants.djs"></script>';
+echo '<script type="text/javascript" src="' . POWERHOUSE_HTTP_ROOT . '/scripts/powerhouse.djs"></script>';
 
 // Other scripts
 echo '<script type="text/javascript" src="' . POWERHOUSE_HTTP_ROOT . '/scripts/utils.js"></script>';

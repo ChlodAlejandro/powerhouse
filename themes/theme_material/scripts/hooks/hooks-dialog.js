@@ -1,4 +1,4 @@
-registerCallbacks("dialogPreProcess", (dialogName, dialogContainer) => {
+ph.registerCallbacks("dialogPreProcess", (dialogName, dialogContainer) => {
     if (dialogName === "newFolder") {
         let inputBody = $(dialogContainer).find("div.dialog-new-folder-name-input");
         inputBody[0].classList.add("mdl-textfield", "mdl-js-textfield", "mdl-textfield--floating-label");
@@ -52,7 +52,7 @@ registerCallbacks("dialogPreProcess", (dialogName, dialogContainer) => {
                     ph_material.toast("Folder created successfully.");
                     DialogWidget.close(dialogContainer.querySelector(".dialog").id);
 
-                    (() => {updateFileList();})();
+                    (() => {ph.file_manager.updateFileList();})();
                 } else if (response !== undefined && response.data !== undefined && response.data.error) {
                     handleError(err, {render: false, log: true});
                     ph_material.snackbar("Folder not created.",
@@ -79,7 +79,7 @@ registerCallbacks("dialogPreProcess", (dialogName, dialogContainer) => {
     }
 });
 
-registerCallbacks("dialogPostProcess", (dialogName, dialogContainer) => {
+ph.registerCallbacks("dialogPostProcess", (dialogName, dialogContainer) => {
     componentHandler.upgradeDom();
     if (dialogName === "newFolder") {
         ($(dialogContainer).find("div.dialog-new-folder-name-input input")[0]).focus();

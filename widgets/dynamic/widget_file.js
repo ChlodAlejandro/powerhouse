@@ -56,8 +56,8 @@ class FileWidget {
         file_container_icon.classList.add("file_icon");
         file_container_icon.setAttribute("src", /*getIcon(filename)*/
             this.type === "file" ?
-                getPath("images/md_ico/file.svg") :
-                getPath("images/md_ico/folder.svg"));
+                ph.asset_manager.getPath("images/md_ico/file.svg") :
+                ph.asset_manager.getPath("images/md_ico/folder.svg"));
         file_container_icon.setAttribute("alt", this.type + " icon");
 
         file_container_name.classList.add("file_name");
