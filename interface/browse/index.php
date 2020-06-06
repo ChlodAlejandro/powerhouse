@@ -29,6 +29,7 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
 		<!-- File manager. Mandatory for pages accessing file database. -->
 		<script src="<?php echo POWERHOUSE_HTTP_ROOT ?>/scripts/browse_file_manager.js"></script>
 		<script src="<?php echo POWERHOUSE_HTTP_ROOT ?>/scripts/browse_page_navigation.js"></script>
+		<script src="<?php echo POWERHOUSE_HTTP_ROOT ?>/scripts/browse_keyboard_events.js" defer></script>
 
 		<!-- Required widgets go here. -->
         <?php echo TagGenerator::getThemeScript("handlers.global") . PHP_EOL ?>
@@ -43,8 +44,8 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
 
         <?php require POWERHOUSE_DIR_ROOT . "/widgets/header_postload.php"; ?>
     </head>
-    <body>
-		<header>
+    <body class="browse">
+		<header id="header">
 			<a href="<?php echo POWERHOUSE_HTTP_ROOT ?>"><img src="<?php echo TagGenerator::getRootPath("images/powerhouse-banner.png") ?>" alt="POWERHOUSE"></a>
 		</header>
 
@@ -61,6 +62,11 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
 				</div>
 			</div>
 			<div id="ap_options" class="ap_right">
+				<a id="actionButton_refresh"
+				   class="selectDropdownButton"
+				   data-ap-option-type="action"
+				   data-action="refresh"
+				   data-tooltip="Refresh">refresh</a>
 				<a id="selectOpen_layout"
 				   class="selectDropdownButton"
 				   data-ap-option-type="select"
@@ -87,7 +93,7 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
 		<!-- Files List -->
 
 		<div id="files" data-layout="grid">
-			<div class="file files_header">
+			<div class="file files_header files_select_clear">
 				<span class="file_icon"></span>
 				<span class="file_name">Name</span>
 				<span class="file_size">Size</span>
@@ -170,6 +176,8 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
         <?php echo TagGenerator::getRootScript("scripts/browse_action_panel") ?>
         <?php echo TagGenerator::getThemeScript("hooks.action-panel") ?>
 		<script>
+			ph.file_manager.prepareFileList();
+
             ph.action_panel.buildActionPanelDirectoryList(CURRENT_DIRECTORY);
             ph.file_manager.updateFileList();
 		</script>

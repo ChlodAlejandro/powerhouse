@@ -47,10 +47,6 @@ class FileWidget {
 
         if (this.type !== "file") {
             file_container.classList.add("dir");
-            file_container.addEventListener("click", async () => {
-                await ph.navigation.enterDirectory(
-                    `${CURRENT_DIRECTORY.length > 0 ? `${CURRENT_DIRECTORY}/` : ""}${this.name}`);
-            });
         }
 
         file_container_icon.classList.add("file_icon");
@@ -82,6 +78,33 @@ class FileWidget {
         file_container_ctime.setAttribute("name", "ctime");
         file_container_ctime.setAttribute("content", this.ctime);
         file_container_ctime.innerHTML = new Date(this.ctime * 1000).toLocaleString();
+
+        file_container.addEventListener("click", async () => {
+            if (file_container.classList.contains("selected")) {
+                if (file_container.hasAttribute("data-sel-time")) {
+                    var selectTime = file_container.getAttribute("data-sel-time");
+                    if (!Number.isNaN(+(selectTime))) {
+                        if ((Date.now() - selectTime) >= ph.config.FOLDER_OPEN_TIME) {
+                            file_container.classList.remove("selected");
+                            ph.triggerCallbacks("fileDeselected", file_container);
+                        } else {
+                            if (file_container.classList.contains("dir"))
+                                await ph.navigation.enterDirectory(
+                                    (CURRENT_DIRECTORY.length > 0 ? `${CURRENT_DIRECTORY}/` : "") +
+                                    `${this.name}`);
+                            // else open file preview window
+                        }
+                    } else
+                        file_container.classList.remove("selected");
+                } else
+                    file_container.classList.remove("selected");
+            } else {
+                file_container.classList.add("selected");
+                file_container.setAttribute("data-sel-time", `${Date.now()}`);
+
+                ph.triggerCallbacks("fileSelected", file_container);
+            }
+        });
 
         file_container.appendChild(file_container_icon);
         file_container.appendChild(file_container_name);

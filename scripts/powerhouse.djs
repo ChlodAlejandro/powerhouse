@@ -17,6 +17,12 @@ const POWERHOUSE_ENDPOINTS = {
     }
 }
 
+// TODO make this configurable
+ph.config = {
+    DEFAULT_DISPLAY: "details",
+    FOLDER_OPEN_TIME: 400
+}
+
 class PowerhouseAssetManager {
     getThemeCSS(subfolder, ruleset) {
         if (ruleset === undefined) {

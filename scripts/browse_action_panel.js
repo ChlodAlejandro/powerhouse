@@ -9,12 +9,26 @@ class PowerhouseActionPanel {
 
     handleActionPanelOption(target) {
         switch (target.getAttribute("data-ap-option-type")) {
+            case "action":
+                this.handleActionPanelButton(target);
+                break;
             case "select":
                 ph.callHandler("actionPanelSelect", target);
                 break;
             case "dialog":
                 this.handleActionPanelDialog(target);
                 break;
+        }
+    }
+
+    handleActionPanelButton(target) {
+        switch (target.getAttribute("data-action")) {
+            case "refresh": {
+                target.addEventListener("click", () => {
+                    ph.file_manager.updateFileList();
+                });
+                break;
+            }
         }
     }
 

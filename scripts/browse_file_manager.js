@@ -1,4 +1,26 @@
 class PowerhouseFileManager {
+
+    prepareFileList() {
+        this.fileList = document.getElementById("files");
+        this.fileList.setAttribute("data-layout", ph.config.DEFAULT_DISPLAY);
+
+        this.fileList.addEventListener("click", (e) => {
+            console.log(e);
+            var fileList = document.getElementById("fileList");
+
+            // noinspection JSUnresolvedVariable
+            if (e.target === fileList
+                || e.target.classList.contains("files_select_clear")
+                || e.target.parentElement.classList.contains("files_select_clear")) {
+                $(fileList).children(".file").each((i, el) => {
+                    el.classList.remove("selected");
+                });
+            }
+        });
+
+        ph.triggerCallbacks("fileListPrepared", this.fileList);
+    }
+
     async getFileList(directory = "") {
         var filesList = undefined;
 
@@ -31,6 +53,16 @@ class PowerhouseFileManager {
         ph.triggerCallbacks("updateFileListEnd");
 
         return files !== undefined;
+    }
+
+    selectAllFiles() {
+        if (this.fileList !== undefined)
+            $(this.fileList).find("#fileList").children(".file").each(
+                (i, e) => {
+                    console.log(e);
+                    e.classList.add("selected");
+                    ph.triggerCallbacks("fileSelected", e);
+                });
     }
 
     buildFiles(targetDOM, fileList) {

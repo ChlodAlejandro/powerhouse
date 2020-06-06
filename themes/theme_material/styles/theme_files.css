@@ -1,7 +1,20 @@
 #files {
     box-sizing: border-box;
-    height: calc(100vh - 75px - 50px);
+    height: 100vh;
+    max-height: calc(100vh - 75px - 50px);
     overflow: auto;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    transition: max-height 0.3s ease;
+}
+
+body.header-hidden #files {
+    max-height: calc(100vh - 50px);
 }
 
 #files .notice {
@@ -40,6 +53,7 @@
     margin: 8px;
     transition: background-color 0.5s ease, transform 0.2s ease;
 }
+
 
 #files[data-layout="grid"] #fileList .file:hover {
     background-color: #ccc;
@@ -83,6 +97,21 @@
 #files[data-layout="grid"] #fileList .file .file_mtime,
 #files[data-layout="grid"] #fileList .file .file_ctime {
     display: none;
+}
+
+#files[data-layout="grid"] #fileList .file.selected {
+    background-color: var(--main-accent-color);
+    transition: none;
+}
+
+#files[data-layout="grid"] #fileList .file:hover.selected {
+    background-color: var(--main-accent-darker);
+    transition: none;
+}
+
+#files[data-layout="grid"] #fileList .file.selected .file_name {
+    color: white;
+    transition: none;
 }
 
 #files[data-layout="details"] {
@@ -177,6 +206,16 @@
 #files[data-layout="details"] .file .file_type,
 #files[data-layout="details"] .file .file_ctime {
     display: none;
+}
+
+#files[data-layout="details"] .file:not(.files_header).selected {
+    background-color:  var(--main-accent-color);
+    transition: none;
+}
+
+#files[data-layout="details"] .file:not(.files_header):hover.selected {
+    background-color:  var(--main-accent-darker);
+    transition: none;
 }
 
 #files_loading_indicator {

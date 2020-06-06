@@ -1,3 +1,11 @@
+.dialog_error {
+    -webkit-touch-callout: initial;
+    -webkit-user-select: initial;
+    -moz-user-select: initial;
+    -ms-user-select: initial;
+    user-select: initial;
+}
+
 .dialog_error .dialog_error_header {
     display: flex;
 

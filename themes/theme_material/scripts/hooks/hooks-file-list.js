@@ -26,3 +26,14 @@ ph.registerCallbacks("updateFileListEnd", () => {
         e.target.parentElement.removeChild(e.target);
     });
 });
+
+ph.registerCallbacks("fileListPrepared", (fileList) => {
+    fileList.addEventListener("scroll", (e) => {
+        var header = document.getElementById("header");
+        if (fileList.scrollTop !== 0) {
+            document.body.classList.add("header-hidden");
+        } else {
+            document.body.classList.remove("header-hidden");
+        }
+    });
+});
