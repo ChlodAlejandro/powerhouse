@@ -63,6 +63,14 @@ body.header-hidden #action_panel {
     margin: 0 2px;
 }
 
+#ap_directory_list :not(.folder_separator) {
+    max-width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: break-word;
+}
+
 #ap_directory_list .main {
     margin-left: 8px;
     font-weight: bold;
@@ -78,6 +86,15 @@ body.header-hidden #action_panel {
     border-radius: 50%;
     color: var(--main-accent-darker);
     background-color: var(--main-text-color);
+}
+
+#ap_directory_list_dropdown {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+#ap_directory_list_dropdown li:last-child {
+    margin-bottom: 8px;
 }
 
 #ap_directory_list_dropdown li {

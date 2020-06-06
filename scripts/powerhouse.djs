@@ -20,7 +20,7 @@ const POWERHOUSE_ENDPOINTS = {
 // TODO make this configurable
 ph.config = {
     DEFAULT_DISPLAY: "details",
-    FOLDER_OPEN_TIME: 400
+    FOLDER_OPEN_TIME: 750
 }
 
 class PowerhouseAssetManager {

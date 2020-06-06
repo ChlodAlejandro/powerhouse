@@ -2,12 +2,11 @@ ph.registerCallbacks("actionPanelDirectoryPostBuild", () => {
     var dl = document.querySelector("#ap_directory_list");
     $(document.getElementById("ap_directory_list_dropdown")).remove();
 
+    let cap = Math.floor(window.innerWidth / 150) * 2;
+
     var problematic = [];
     for (var i = 0; i < dl.childElementCount; i++) {
-        if (dl.children[i].offsetTop + dl.children[i].offsetHeight >
-            dl.offsetTop + dl.offsetHeight ||
-            dl.children[i].offsetLeft + dl.children[i].offsetWidth >
-            dl.offsetLeft + dl.offsetWidth) {
+        if (i > cap) {
 
             problematic.push(dl.children[i]);
         }
@@ -72,6 +71,15 @@ ph.registerCallbacks("actionPanelDirectoryPostBuild", () => {
         }
 
         document.body.appendChild(d);
+
+        var lastEl;
+        $(dl).children().each((i, el) => {
+            if (lastEl !== undefined
+                && lastEl.classList.contains("folder_separator")
+                && el.classList.contains("folder_separator"))
+                el.parentElement.removeChild(el);
+            else lastEl = el;
+        });
 
         componentHandler.upgradeDom();
     }
