@@ -1,5 +1,97 @@
 class PowerhouseFileManager {
 
+    static getSortVariables() {
+        if (PowerhouseFileManager.fieldSort === undefined)
+            PowerhouseFileManager.fieldSort = (field, fileA, fileB) => {
+                if (typeof fileA[field] === "string" && typeof fileB[field] === "string") {
+                    return fileA[field].toLowerCase() === fileB[field].toLowerCase() ? 0 :
+                        (fileA[field].toLowerCase() < fileB[field].toLowerCase() ? -1 : 1);
+                } else
+                    return fileA[field] === fileB[field] ? 0 :
+                        (fileA[field] < fileB[field] ? -1 : 1);
+            };
+        if (PowerhouseFileManager.dirSort === undefined)
+            PowerhouseFileManager.dirSort = (fileA, fileB, fallbackFieldSort = "name") => {
+                if (fileA.type === "dir" && fileB.type === "file")
+                    return -1;
+                else if (fileB.type === "dir" && fileA.type === "file")
+                    return 1;
+                else if (equalsAll("dir", fileA, fileB))
+                    return this.fieldSort(fallbackFieldSort, fileA, fileB);
+                else return false;
+            };
+
+        return [
+            {
+                title: "Name",
+                variable: "name",
+                type: "string",
+                sortingFunction: (fileA, fileB) => {
+                    var ds = this.dirSort(fileA, fileB);
+                    if (ds === false)
+                        return this.fieldSort("name", fileA, fileB);
+                    else return ds;
+                }
+            },
+            {
+                title: "Size",
+                variable: "size",
+                type: "number",
+                sortingFunction: (fileA, fileB) => {
+                    var ds = this.dirSort(fileA, fileB, "size");
+                    if (ds === false)
+                        return this.fieldSort("size", fileA, fileB);
+                    else return ds;
+                }
+            },
+            {
+                title: "Modified Time",
+                variable: "mtime",
+                type: "date",
+                sortingFunction: (fileA, fileB) => {
+                    var ds = this.dirSort(fileA, fileB, "mtime");
+                    if (ds === false)
+                        return this.fieldSort("mtime", fileA, fileB);
+                    else return ds;
+                }
+            },
+            {
+                title: "Created Time",
+                variable: "ctime",
+                type: "date",
+                sortingFunction: (fileA, fileB) => {
+                    var ds = this.dirSort(fileA, fileB, "ctime");
+                    if (ds === false)
+                        return this.fieldSort("ctime", fileA, fileB);
+                    else return ds;
+                }
+            },
+            {
+                title: "Extension",
+                variable: "ext",
+                type: "string",
+                sortingFunction: (fileA, fileB) => {
+                    var ds = this.dirSort(fileA, fileB, "name");
+                    if (ds !== false)
+                        return ds;
+
+                    var extA =  /(?:\.([^.]+))?$/.exec(fileA.name)[1];
+                    var extB =  /(?:\.([^.]+))?$/.exec(fileB.name)[1];
+
+                    if (u(extA) && !u(extB))
+                        return 1;
+                    else if (!u(extA) && u(extB))
+                        return -1;
+                    else if (u(extA) && u(extB))
+                        return 0;
+
+                    return extA.toLowerCase() === extB.toLowerCase() ? 0 :
+                        (extA.toLowerCase() < extB.toLowerCase() ? -1 : 1);
+                }
+            }
+        ];
+    }
+
     prepareFileList() {
         this.fileList = document.getElementById("files");
         this.fileList.setAttribute("data-layout", ph.config.DEFAULT_DISPLAY);
@@ -45,7 +137,6 @@ class PowerhouseFileManager {
         var files = await this.getFileList(directory);
         if (files !== undefined) {
             var fileList = document.getElementById("fileList");
-            fileList.innerHTML = "";
             this.buildFiles(fileList, files);
         } else
             ph.triggerCallbacks("updateFileListError");
@@ -65,36 +156,16 @@ class PowerhouseFileManager {
                 });
     }
 
-    buildFiles(targetDOM, fileList) {
-        if (Object.keys(fileList).length > 0) {
-            var files = {};
-            var directories = {};
+    buildFiles(targetDOM, fileList, sortOptions) {
+        targetDOM.innerHTML = "";
 
-            for (var fsobj of Object.keys(fileList).sort((a, b) => a.localeCompare(b))) {
-                if (fileList.hasOwnProperty(fsobj)) {
-                    if (fileList[fsobj]["type"] === "dir")
-                        directories[fsobj] = fileList[fsobj];
-                    else
-                        files[fsobj] = fileList[fsobj];
-                }
-            }
+        if (fileList.length > 0) {
+            fileList = this.sort(fileList, sortOptions);
 
-            for (var directory in directories) {
-                if (directories.hasOwnProperty(directory)) {
-                    targetDOM.appendChild((new FileWidget({
-                        "name": directory,
-                        ...directories[directory]
-                    })).render());
-                }
-            }
-
-            for (var file in files) {
-                if (files.hasOwnProperty(file)) {
-                    targetDOM.appendChild((new FileWidget({
-                        "name": file,
-                        ...files[file]
-                    })).render());
-                }
+            for (var file of fileList) {
+                targetDOM.appendChild((new FileWidget({
+                    ...file
+                })).render());
             }
         } else {
             var notice = document.createElement("div");
@@ -116,6 +187,36 @@ class PowerhouseFileManager {
 
             targetDOM.appendChild(notice);
         }
+
+        this.currentFileList = fileList;
+    }
+
+    sort(fileList, sortOptions) {
+        var patternList;
+        var patterns;
+        if (u(sortOptions)) {
+            patternList = PowerhouseFileManager.getSortVariables();
+            patterns = !u(this.currentSortPattern) ? this.currentSortPattern : ph.config.DEFAULT_SORT_PATTERN;
+        } else {
+            patternList = sortOptions.patternList;
+            patterns = sortOptions.patterns;
+
+            this.currentSortPattern = patterns;
+        }
+
+        fileList.sort((fileA, fileB) => {
+            for (let pattern of patterns) {
+                var res = patternList
+                    .find(e => e.variable === pattern.variable)
+                    .sortingFunction(fileA, fileB);
+
+                if (res !== 0)
+                    return pattern.direction === "a" ? res : res * -1;
+            }
+            return 0;
+        });
+
+        return fileList;
     }
 }
 

@@ -41,6 +41,7 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
         <?php echo TagGenerator::getRootScript("widgets/dynamic/widget_dialog") . PHP_EOL  ?>
         <?php echo TagGenerator::getRootScript("widgets/dynamic/widget_dialogError") . PHP_EOL  ?>
         <?php echo TagGenerator::getRootScript("widgets/dynamic/widget_dialogNewFolder") . PHP_EOL ?>
+        <?php echo TagGenerator::getRootScript("widgets/dynamic/widget_dialogSort") . PHP_EOL ?>
 
         <?php require POWERHOUSE_DIR_ROOT . "/widgets/header_postload.php"; ?>
     </head>
@@ -185,12 +186,12 @@ require_once POWERHOUSE_DIR_ROOT . "/widgets/utilities/TagGenerator.php";
         <?php require POWERHOUSE_DIR_ROOT . "/widgets/body_postload.php"; ?>
     </body>
 
-<!--
+	<!--
 
- POWERHOUSE.
+     POWERHOUSE.
 
- (o)> (*penguin noises*)
- / )
- ‾ ‾
--->
+     (o)> (*penguin noises*)
+     / )
+     ‾ ‾
+    -->
 </html>

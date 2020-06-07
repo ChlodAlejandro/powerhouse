@@ -51,7 +51,7 @@ body.header-hidden #files {
     border-radius: 4px;
     padding: 8px;
     margin: 8px;
-    transition: background-color 0.5s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 
@@ -156,6 +156,8 @@ body.header-hidden #files {
 #files[data-layout="details"] .file:not(.files_header):hover {
     background-color: rgba(0, 0, 0, 0.4);
     cursor: pointer;
+
+    transition: background-color 0.3s ease;
 }
 
 #files[data-layout="details"] .file:active {
@@ -166,7 +168,7 @@ body.header-hidden #files {
     box-sizing: border-box;
     width: 3%;
 
-    padding: 8px;
+    padding: 0.2%;
     margin-left: 8px;
     margin-right: 26px;
 

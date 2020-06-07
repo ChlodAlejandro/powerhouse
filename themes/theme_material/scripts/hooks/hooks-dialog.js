@@ -72,6 +72,18 @@ ph.registerCallbacks("dialogPreProcess", (dialogName, dialogContainer) => {
 
         let cancel = $(dialogContainer).find(".dialog-new-folder-cancel")[0];
         cancel.classList.add("mdl-button", "mdl-js-button", "mdl-js-ripple-effect");
+    } else if (dialogName === "sort") {
+        let submit = $(dialogContainer).find(".dialog-sort-submit")[0];
+        submit.classList.add("mdl-button", "mdl-js-button", "mdl-button--raised", "mdl-js-ripple-effect",
+            "mdl-button--colored");
+
+        let cancel = $(dialogContainer).find(".dialog-sort-cancel")[0];
+        cancel.classList.add("mdl-button", "mdl-js-button", "mdl-js-ripple-effect");
+
+        $(dialogContainer).find(".dialog-sort-options button").each((i, el) => {
+            console.log(el);
+            el.classList.add("mdl-button", "mdl-js-button", "mdl-button--raised", "mdl-js-ripple-effect");
+        });
     } else if (dialogName === "error") {
         let ok = $(dialogContainer).find(".dialog_error_ok")[0];
         ok.classList.add("mdl-button", "mdl-js-button", "mdl-button--raised", "mdl-js-ripple-effect",
@@ -84,4 +96,22 @@ ph.registerCallbacks("dialogPostProcess", (dialogName, dialogContainer) => {
     if (dialogName === "newFolder") {
         ($(dialogContainer).find("div.dialog-new-folder-name-input input")[0]).focus();
     }
+});
+
+ph.registerCallbacks("dialogSort_entryAdded", (entry) => {
+    $(entry).find(".dialog-sort-entry-delete").attr("data-tooltip", "Delete Entry");
+    ph_material.build_tooltips();
+});
+
+ph.registerCallbacks("dialogSort_entryRemoved", (entry) => {
+    var tooltipTarget = $(entry).find(".dialog-sort-entry-delete")[0].id;
+    $(`.tooltip[data-target-element-id='${tooltipTarget}']`).remove();
+});
+
+ph.registerCallbacks("dialogSort_applied", () => {
+    ph_material.toast("New sorting pattern applied.");
+});
+
+ph.registerCallbacks("dialogSort_cancelled", () => {
+
 });

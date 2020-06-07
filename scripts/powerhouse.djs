@@ -20,6 +20,12 @@ const POWERHOUSE_ENDPOINTS = {
 // TODO make this configurable
 ph.config = {
     DEFAULT_DISPLAY: "details",
+    DEFAULT_SORT_PATTERN: [
+        {
+            variable: "name",
+            direction: "a"
+        }
+    ],
     FOLDER_OPEN_TIME: 750
 }
 

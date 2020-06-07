@@ -1,0 +1,58 @@
+#dialogSort {
+    min-width: 600px;
+}
+
+#dialogSort .dialog-sort-options {
+    margin: 8px 0;
+}
+
+#dialogSort .dialog-sort-options button {
+    box-sizing: border-box;
+    width: 48%;
+    margin: 0 1%;
+}
+
+#dialogSort .dialog-sort-actions {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+#dialogSort .dialog-sort-header {
+    font-weight: bold;
+}
+
+#dialogSort .dialog-sort-entries {
+    max-height: 50vh;
+    overflow: auto;
+}
+
+#dialogSort .dialog-sort-entry {
+    width: 100%;
+}
+
+#dialogSort .dialog-sort-entry .dialog-sort-entry-variable,
+#dialogSort .dialog-sort-entry .dialog-sort-entry-direction {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 45%;
+    margin: 8px 2.5% 2px 0;
+}
+
+#dialogSort .dialog-sort-entry select {
+    box-sizing: border-box;
+    padding: 4px;
+    width: 100%;
+}
+
+
+#dialogSort .dialog-sort-entry .dialog-sort-entry-options {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 5%;
+}
+
+#dialogSort .dialog-sort-entry .dialog-sort-entry-options .dialog-sort-entry-delete {
+    cursor: pointer;
+}
+

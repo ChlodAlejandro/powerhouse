@@ -64,12 +64,13 @@ class FileListEndpoint extends APIEndpoint
         foreach ($files as $file) {
             $filepath = realpath($directory . "/" . $file);
             $isFile = is_file($filepath);
-            $finalOutput[$file] = [
+            array_push($finalOutput, [
+                "name" => $file,
                 "type" => $isFile ? "file" : "dir",
                 "size" => $isFile ? filesize($filepath) : 0,
                 "mtime" => filemtime($filepath),
                 "ctime" => filectime($filepath)
-            ];
+            ]);
         }
 
         echo APIResponseBuilder::buildResponse(200, ["files" => $finalOutput]);

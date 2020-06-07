@@ -12,6 +12,18 @@ function nou() {
     return false;
 }
 
+function equalsAll(variable, ...toCheck) {
+    for (let v of toCheck)
+        if (variable !== v) return false;
+    return true;
+}
+
+function equalsOne(variable, ...toCheck) {
+    for (let v of toCheck)
+        if (variable === v) return true;
+    return false;
+}
+
 // == HTML ==
 
 function escapeHtml(unsafe) {

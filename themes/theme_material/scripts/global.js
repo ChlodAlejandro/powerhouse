@@ -61,3 +61,33 @@ ph_material.snackbar = (text, action, actionText, timeout = 5000) => {
     // noinspection JSUnresolvedFunction
     snackbarContainer.MaterialSnackbar.showSnackbar(snackbarData);
 }
+
+ph_material.build_tooltips = () => {
+    $("[data-tooltip]:not(.initialized)").each((i, e) => {
+        e.classList.add("initialized");
+
+        var target = $(e);
+        if (target.attr("id") === undefined || target.attr("id").length === 0) {
+            target.attr("id", "tooltip-" + Math.floor(Math.random() * 100000));
+        }
+        var id = target.attr("id");
+
+        var tooltip = document.createElement("div");
+        tooltip.classList.add("tooltip");
+        tooltip.classList.add("tooltip-larger");
+        tooltip.setAttribute("data-target-element-id", id);
+        tooltip.innerText = target.attr("data-tooltip");
+
+        $(tooltip).insertAfter(document.body.lastChild);
+    });
+
+    $(".tooltip:not(.initialized)").each((i, e) => {
+        e.classList.add("initialized");
+
+        e.classList.add("mdl-tooltip");
+        e.setAttribute("data-mdl-for",
+            e.getAttribute("data-target-element-id"));
+    });
+
+    componentHandler.upgradeDom();
+}

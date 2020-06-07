@@ -36,6 +36,7 @@ class DialogNewFolder {
         f_b_c.classList.add("dialog-new-folder-cancel");
         f_b_c.innerText = "Cancel";
         f_b_c.addEventListener("click", () => {
+            ph.triggerCallbacks("dialogNewFolder_cancelled", f);
             DialogWidget.close(f.parentElement.id);
         });
         f_b_c.setAttribute("type", "button");
