@@ -5,13 +5,6 @@ mdlScript.setAttribute("src", ph.asset_manager.getThemeScript("inc/material.min"
 
 document.head.append(mdlScript);
 
-ph.registerHandler("buildActionPanelDirectoryListSeparator", function() {
-    var s = document.createElement("div");
-    s.classList.add("folder_separator", "material-icons");
-    s.innerText = "keyboard_arrow_right";
-    return s;
-}, true);
-
 var ph_material = {};
 
 ph_material.buildSnackbar = (timeout) => {

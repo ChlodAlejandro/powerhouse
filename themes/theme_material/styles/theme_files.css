@@ -161,7 +161,7 @@ body.header-hidden #files {
 }
 
 #files[data-layout="details"] .file:active {
-
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 #files[data-layout="details"] .file .file_icon {
