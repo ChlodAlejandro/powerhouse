@@ -1,3 +1,4 @@
 Header always append Allow POST
 
+# Max Uploads
 php_value max_file_uploads 1
