@@ -130,7 +130,7 @@ function getTraces() {
 			<p>If this keeps happening, please report the issue to the <a href="<?php echo POWERHOUSE_DEV_PAGE ?>">Powerhouse development page</a>.</p>
 			<div id="details"><?php
 			if (!isset($_GET["error"]) && !isset($_POST["error"])) {
-				echo "It looks like... no exception occurred? This is pretty weird. Something should have happened, really. This could be because you went to the error page on your own in an attempt to look at the error page. But what would compel someone to look for something that in the first place was made to be avoided? Perhaps the thrill, the adventure. But on this website? On this project? That's quite an exceptional case. Why would you come here? Did you feel like looking at an error that never existed? Did you feel like you wanted to break the rules and look for a page not meant to be seen much? How quirky of you. That's not what any other person would usually do. Either way, it's very interesting that someone like you would really make the effort to navigate to this page. It's only 6 characters away from the root link though, so it's not really much of a hard feat to achieve, but a feat nonetheless. Anyways, I hope you found what you were looking for. An error page with absolutely no error. How curious. Usually, errors would have an associated code, but it looks like I cannot provide any at the moment. Don't worry though, since I know exactly what to put. Good luck on your journies, traveller. I hope we don't see each other again soon. Farewell.\n\n200 OK";
+				echo "It looks like... no exception occurred? This is pretty weird.";
 			} else if (isset($_GET["error"])) {
                 echo parseError($_GET["error"]) . PHP_EOL . PHP_EOL . "[INFO]" . PHP_EOL . getTraces();
 			} else {

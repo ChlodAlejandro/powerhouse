@@ -1,11 +1,35 @@
-# Favicon
-<Files "favicon.ico">
-    Options FollowSymLinks
-    Order allow,deny
-    Allow from all
-</Files>
+# =====================================================
+#             POWERHOUSE'S HTACCESS FILE
+# =====================================================
+#
+# It may not look like it, but this .htaccess file is
+# responsible for keeping your Powerhouse installation
+# not only safe and secure, but functional! We suggest
+# that you don't change this file, unless you absolutely
+# know what you're doing.
 
-# PHP constants and installation configuration
+# Sanity check
+<IfModule mod_php7>
+    <IfModule !mod_rewrite>
+        ErrorDocument 403 error/bad-installation.html
+
+        Order deny,allow
+        Deny from all
+    </IfModule>
+    RewriteEngine On
+    RewriteRule ^.*$ error/bad-installation.html
+</IfModule>
+
+# Prevent directory listing
+Options All -Indexes
+
+# Hide .htaccess files
+<FilesMatch "\.htaccess">
+    Order deny,allow
+    Deny from all
+</FilesMatch>
+
+# Prevent users from accessing the environment variable files
 <Files "env.php">
     Order deny,allow
     Deny from all
@@ -21,15 +45,37 @@
     Deny from all
 </Files>
 
-# JavaScript and Dynamic JavaScript headers
+# Process Dynamic JavaScript files with PHP
+AddType application/x-httpd-php .djs
+
+# Set Content-Type for normal and dynamic (PHP-enhanced) JavaScript files.
 <FilesMatch ".+\.d?js$">
     Header always set Content-Type "text/javascript"
 </FilesMatch>
 
-# Image headers
+# Image caching
 <FilesMatch ".(jpe?g|png)$">
     Header always set Cache-Control "private, max-age=31536000"
 </FilesMatch>
 
-# Process Dynamic JavaScript files with PHP
-AddType application/x-httpd-php .djs
+# [Uploads] Enable file uploads
+php_flag file_uploads on
+
+# [Uploads] Max upload size
+# This is configurable by the setup manaager.
+# Make sure that these are in bytes and lack suffixes!
+php_value post_max_size 1075838976
+php_value upload_max_filesize 1073741824
+
+# [Upload Progress] Powerhouse session cookie
+php_value session.name PH_SESSION
+
+# [Upload Progress] Powerhouse session auto-start
+php_flag session.auto_start on
+
+# [Upload Progress] Powerhouse session upload options
+php_flag session.upload_progress on
+php_value session.upload_progress.name PH_UPLOAD_PROGRESS_TOKEN
+php_value session.upload_progress.prefix ph_upload_progress_
+php_value session.upload_progress.freq 2048
+php_value session.upload_progress.min_freq 1

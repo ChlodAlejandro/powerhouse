@@ -7,6 +7,11 @@ class APIException
      * @var array An array of Powerhouse error codes and their respective HTTP code and short and long messages. This array only includes errors that Powerhouse throws.
      */
     private static $httpCodeMessages = [
+        "400-ARG" => [
+            "http_code" => 400,
+            "message_short" => "Invalid Argument",
+            "message_long" => "The one or multiple of the arguments provided is invalid."
+        ],
         "400-DIR" => [
             "http_code" => 400,
             "message_short" => "Invalid Directory",
@@ -22,15 +27,50 @@ class APIException
             "message_short" => "Missing Argument",
             "message_long" => "The request is missing a required argument."
         ],
+        "400-UCF" => [
+            "http_code" => 400,
+            "message_short" => "Upload Conflict",
+            "message_long" => "The file being uploaded conflicts with another file already on the server."
+        ],
+        "400-UPT" => [
+            "http_code" => 400,
+            "message_short" => "Partial Upload",
+            "message_long" => "The file only uploaded partway before finishing."
+        ],
+        "400-UNF" => [
+            "http_code" => 400,
+            "message_short" => "Missing Argument",
+            "message_long" => "The request is missing a required argument. No file was provided to the uploader."
+        ],
         "405" => [
             "http_code" => 405,
             "message_short" => "Method Not Allowed",
             "message_long" => "The request method is known by the server but has been disabled and cannot be used."
         ],
+        "413-UTL" => [
+            "http_code" => 413,
+            "message_short" => "File Too Large",
+            "message_long" => "The file being uploaded exceeds the allowed size."
+        ],
         "500" => [
             "http_code" => 500,
             "message_short" => "Internal Server Error",
             "message_long" => "The server encountered an unexpected condition which prevented it from fulfilling the request."
+        ],
+        "500-UTD" => [
+            "http_code" => 500,
+            "message_short" => "Temporary Directory Unavailable",
+            "message_long" => "Uploads cannot be processed at the moment because a file is missing."
+        ],
+        "500-UCW" => [
+            "http_code" => 500,
+            "message_short" => "I/O Error",
+            "message_long" => "Uploads cannot be processed at the moment due to a disk issue."
+        ],
+        "500-UEX" => [
+            "http_code" => 500,
+            "message_short" => "Upload Cancelled",
+            "message_long" => "The upload was cancelled."
         ]
     ];
 

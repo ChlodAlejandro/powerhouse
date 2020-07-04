@@ -1,0 +1,6 @@
+# Get rid of extensions
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteCond %{REQUEST_FILENAME} "!(.*)\.php$"
+RewriteRule ^(.*)$ $1.php [QSA]

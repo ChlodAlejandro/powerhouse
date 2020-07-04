@@ -9,6 +9,8 @@ abstract class APIEndpoint
     abstract public function getAllowedMethods();
 
     public function execute() {
+        header("Content-Type: application/json");
+
         if (!in_array($_SERVER["REQUEST_METHOD"], $this->getAllowedMethods())) {
             echo APIResponseBuilder::buildResponse("405", null);
             exit();

@@ -50,7 +50,7 @@ class FolderCreateEndpoint extends APIEndpoint
 
         if (!isset($_POST["folder_name"])) {
             echo APIResponseBuilder::buildResponse(400, new APIException("400-MIS"),
-                "Please make sure that the folder name was specified.");
+                "The folder name was not specified.");
             exit();
         }
 

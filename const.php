@@ -1,5 +1,9 @@
 <?php
 // The following are constants, which shouldn't be changed.
+//
+// If you want to change a configuration value, use env.php
+// instead. If you're changing the values here, you may
+// void your warranty!
 
 /**
  * DEBUG_MODE
@@ -32,5 +36,26 @@ define("POWERHOUSE_DEV_PAGE", "https://github.com/ChlodAlejandro/powerhouse");
  * system, with / being the root of the file system.
  **/
 define("POWERHOUSE_DIR_ROOT", __DIR__);
+
+// POWERHOUSE SECURITY CONFIGURATION.
+
+/**
+ * POWERHOUSE_SECURITY_ALLOWROOT
+ *
+ * WARNING: UNDER NO CIRCUMSTANCES SHOULD YOU ENABLE THIS
+ * UNLESS YOUR SYSTEM IS HEAVILY RESTRICTED AND YOU
+ * UNDERSTAND THE ISSUES THAT DISABLING THIS OPTION
+ * MAY CAUSE.
+ *
+ * Allows Powerhouse to use the root as a valid directory.
+ * For Unix-based systems, this would be /, and for Windows
+ * based-systems, this would be the top folder of the drive
+ * where Powerhouse is installed.
+ *
+ * This is an EXTREMELY dangerous option. The Powerhouse
+ * contributors are not responsible for damages to your server
+ * if this option was turned on.
+ */
+define("POWERHOUSE_SECURITY_ALLOWROOT", false);
 
 require(__DIR__ . "/system/verify_env.php");

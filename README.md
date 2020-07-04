@@ -23,6 +23,13 @@ Theoretically, a user can even replace the `/interface` folder with their own cu
 
 By default, Powerhouse uses a modified Google Material theme. This modern yet simple look makes it easy to use no matter which user.
 
+## Files
+By theory, you could delete every file except `.htaccess`, `const.php`, and `env.php` and every folder except `api` and `system`, and Powerhouse will still work fine.
+
+The interface mostly depends on the API, so as long as the skeletal files and folders exist, Powerhouse will still work.
+
+This opens up the opportunity for anyone to create their own Powerhouse interface as a fork of the project. So, go ahead and do it better than me if you can!
+
 ## Contributing
 Although I'm still building the entire project, you can see what the folders are for in [the repository guide](https://github.com/ChlodAlejandro/powerhouse/blob/master/WHAT-IS-THIS-FOR.md).
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Bad Installation | Powerhouse</title>
+		<style>
+			html, body {
+				margin: 0;
+				height: 100vh;
+				width: 100vw;
+			}
+
+			body {
+				background-color: #0e2231;
+				color: white;
+				text-align: center;
+
+				font-family: "Heebo", "Arial", sans-serif;
+
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+			}
+
+			ul {
+				list-style: none;
+			}
+		</style>
+	</head>
+	<body>
+		<p><img src="../images/powerhouse-banner.png" style="width: 400px; height: auto;" alt="Powerhouse"></p>
+		<p>There is a problem with your installation of Powerhouse. Please make sure that you are running Apache with the required plugins.</p>
+		<p>The following plugins are required by Powerhouse.</p>
+		<ul>
+			<li><code>mod_php7</code> - PHP Hypertext Processor, >7.3.0</li>
+			<li><code>mod_rewrite</code> - Apache Rewrite Module - preinstalled with Apache 2.4</li>
+		</ul>
+		<p>Please make sure that they are enabled before proceeding.</p>
+	</body>
+</html>
