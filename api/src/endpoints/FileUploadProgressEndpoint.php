@@ -40,6 +40,11 @@ class FileUploadProgressEndpoint extends APIEndpoint
     {
         parent::execute();
 
+        if (!POWERHOUSE_UPLOADS_ENABLED) {
+            echo APIResponseBuilder::buildResponse(403, new APIException("403-UNA"));
+            exit();
+        }
+
         $prog_pref = ini_get("session.upload_progress.prefix");
         $prog_name = POWERHOUSE_UPLOADS_PROGRESSTOKEN;
 

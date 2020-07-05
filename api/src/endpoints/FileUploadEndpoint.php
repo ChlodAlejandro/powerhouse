@@ -40,6 +40,11 @@ class FileUploadEndpoint extends APIEndpoint
     {
         parent::execute();
 
+        if (!POWERHOUSE_UPLOADS_ENABLED) {
+            echo APIResponseBuilder::buildResponse(403, new APIException("403-UNA"));
+            exit();
+        }
+
         if (!isset($_FILES["file"])) {
             echo APIResponseBuilder::buildResponse(400, new APIException("400-MIS"),
                 "No file was provided to the uploader.");
@@ -121,7 +126,7 @@ class FileUploadEndpoint extends APIEndpoint
         }
 
         if (is_file($finalPath) && (!isset($_POST["overwrite"]) || $_POST["overwrite"] != "true")) {
-            echo APIResponseBuilder::buildResponse(400, new APIException("400-UCF"));
+            echo APIResponseBuilder::buildResponse(409, new APIException("409-UCF"));
             exit();
         }
 

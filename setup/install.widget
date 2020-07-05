@@ -1,0 +1,112 @@
+<?php
+$installed = file_exists(__DIR__ . "/../env.php");
+$installable = file_exists(__DIR__ . "/../env.default.php");
+
+function isSecure() {
+    return
+        (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        || $_SERVER['SERVER_PORT'] == 443;
+}
+
+$websiteEngine = explode("/", $_SERVER["SERVER_SOFTWARE"])[0];
+$websiteRoot = (isSecure() ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+
+// Default values
+function extractDefinitions($sourceFile) {
+    $definitions = array();
+
+    preg_match_all('/define\\("([^"]+)", ?([^)]+)\\)/', $sourceFile, $matches);
+
+    foreach ($matches[1] as $i => $v) {
+        $definitions[strval($v)] = strval($matches[2][$i]);
+    }
+    return $definitions;
+}
+
+$ph_files_dir = PHP_OS_FAMILY == "Windows" ?
+	(__DIR__)[0] . ":" . DIRECTORY_SEPARATOR . "ph_files"
+	: DIRECTORY_SEPARATOR . "var" . DIRECTORY_SEPARATOR . "ph_files";
+
+
+
+?><script>
+document.body.classList.add("white");
+document.body.classList.add("install");
+</script>
+
+<div id="header">
+    <img id="banner" src="../images/powerhouse-banner.png" alt="Powerhouse banner">
+</div>
+<div id="progress" class="mdl-progress mdl-js-progress"></div>
+
+<div id="workspace_container">
+    <div id="steps">
+		<ol>
+			<li class="active">Verify location</li>
+			<li>Configure basic options</li>
+			<li>Fine-tune configuration</li>
+			<li>Agreements</li>
+			<li>Done!</li>
+		</ol>
+    </div>
+    <div id="workspace">
+		<div id="ws_verify_loc">
+			<h1>Step 1. Verify the installation location</h1>
+
+			<p>You can choose to install Powerhouse on a subdirectory, or on the root of your webserver. Either way, Powerhouse will do its best in order to run under any circumstance.</p>
+			<p>We've detected that you're running <?php echo $websiteEngine ?> on <?php echo PHP_OS_FAMILY ?>, so we've done our best to make the default settings reflect your environment the most. </p>
+
+			<hr/>
+
+			<h3>Powerhouse (relative to the root)</h3>
+			<p>This is the location of Powerhouse relative to the root. If Powerhouse is in your web root (<code><?php echo $websiteRoot; ?></code>), then the value of this should be <code>/</code>.</p>
+			<div id="ph_http_root" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<input class="mdl-textfield__input" type="text" id="ph_http_root_input" value="">
+				<label class="mdl-textfield__label" for="ph_http_root_input">Powerhouse (relative to your HTTP server)</label>
+			</div>
+
+			<hr/>
+
+			<h3>Powerhouse storage location</h3>
+			<p>This is the place where Powerhouse will store the uploaded and downloaded files.</p>
+			<p>We suggest that this directory should be outside any directory accessible through your web server. Although Powerhouse denies arbitrary access to this folder, other virtual hosts may not do the same.</p>
+			<div id="ph_http_root" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<input class="mdl-textfield__input" type="text" id="ph_http_root_input" value="<?php echo $ph_files_dir ?>">
+				<label class="mdl-textfield__label" for="ph_http_root_input">Powerhouse storage location</label>
+			</div>
+		</div>
+		<div id="ws_basic_options">
+			<h1>Step 2. Configure basic Powerhouse options</h1>
+
+			<p>Here, you can modify basic Powerhouse options, such as the theme to use.</p>
+			<p>If you wish to use a theme different from the default, </p>
+
+			<hr/>
+
+		</div>
+    </div>
+</div>
+
+<!--suppress JSUnresolvedFunction -->
+<script>
+    componentHandler.upgradeDom();
+
+    var workspace = document.getElementById("workspace");
+    var progress_bar = document.getElementById("progress");
+    var ph_http_root = document.getElementById("ph_http_root");
+
+	// Detect execution path
+    var a = document.createElement("a");
+    a.setAttribute("href", "..");
+    ph_http_root.MaterialTextfield.change(
+        a.href.replace("<?php echo $websiteRoot ?>", "")
+	);
+
+    // Setup progress bar
+    progress_bar.MaterialProgress.setProgress(0);
+    workspace.addEventListener("scroll", () => {
+		progress_bar.MaterialProgress.setProgress(
+			(workspace.scrollTop / (workspace.scrollHeight - workspace.offsetHeight)) * 100
+		);
+    });
+</script>

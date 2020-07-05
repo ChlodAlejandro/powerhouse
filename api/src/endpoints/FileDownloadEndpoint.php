@@ -40,6 +40,12 @@ class FileDownloadEndpoint extends APIEndpoint
     {
         parent::execute();
 
+        // TODO POWERHOUSE_DOWNLOADS_ENABLED
+        if (!POWERHOUSE_FILES_NODOWNLOADS) {
+            echo APIResponseBuilder::buildResponse(403, new APIException("403-DNA"));
+            exit();
+        }
+
         if (!isset($_GET["file"])) {
             echo APIResponseBuilder::buildResponse(400, new APIException("400-MIS"),
                 "No file path was provided.");

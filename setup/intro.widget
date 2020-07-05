@@ -1,0 +1,52 @@
+<?php
+if (!defined("POWERHOUSE_INSTALLING"))
+	define("POWERHOUSE_INSTALLING", true);
+require_once __DIR__ . "/../const.php";
+
+$installed = file_exists(__DIR__ . "/../env.php")
+	&& !file_exists(__DIR__ . "/.reconfigure");
+$installable = file_exists(__DIR__ . "/../env.default.php");
+?>
+<script>
+	document.getElementById("content").classList.add("centered");
+</script>
+<img id="banner" src="../images/powerhouse-banner.png" alt="Powerhouse banner">
+
+<h1 style="font-size: 32px; margin-top: 0;">Setup and Installation</h1>
+<div class="intro_message">
+    <?php if (!$installed): ?>
+		<p>Hello, and thank you for choosing to install Powerhouse on your server! This "installer" of sorts will guide you throught the necessary customizations that you want for your Powerhouse server.</p>
+		<p>Installing Powerhouse requires <a href="https://php.net" target="_blank">PHP</a> (which you have enabled!), and <a href="https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html" target="_blank">Apache's <code>mod_rewrite</code> module</a> (which should be enabled by default.) If you've got those set up, you're good to go!</p>
+		<p>You can start the installation by clicking the button below.</p>
+		<button id="setup_start" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-button--raised">Start</button>
+	<?php elseif (!$installable): ?>
+		<p>For some reason, the default <code>env.php</code> file cannot be found. Unfortunately, this file is required if you want to install Powerhouse. You can delete the file after the setup has been finished.</p>
+		<p>We can download the default <code>env.php</code> for you, but this may cause issues if the latest <code>env.php</code> does not match your Powerhouse version (<?php echo POWERHOUSE_VERSION; ?>).</p>
+		<p>To proceed, click the button below.</p>
+		<button id="download_start" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-button--raised">Download Default</button>
+    <?php else: ?>
+		<p>It seems like Powerhouse has already been installed. If you want to reinstall Powerhouse, delete your <code>env.php</code> file first, or enable reconfiguration mode.</p>
+		<p>Deleting <code>env.php</code> will not delete any of your installed files. However, any modifications done to auto-generated files (<code>.htaccess</code> files, <code>env.php</code>, and others) may be lost.</p>
+		<p>To enable reconfiguration mode, create a file in the <code>setup</code> folder with the filename <code>.reconfigure</code>. Make sure that you delete this file after reconfiguration, so as to not expose your system variables.</p>
+    <?php endif; ?>
+</div>
+
+<script>
+    <?php if (!$installed): ?>
+    document.getElementById("setup_start").addEventListener("click", () => {
+        var content = document.getElementById("content");
+        content.classList.add("fade-out");
+        content.addEventListener("animationend", () => {
+            loadWidget("install");
+        });
+    });
+	<?php elseif (!$installable): ?>
+    document.getElementById("download_start").addEventListener("click", () => {
+        var content = document.getElementById("content");
+        content.classList.add("fade-out");
+        content.addEventListener("animationend", () => {
+            loadWidget("download-default");
+        });
+    });
+    <?php endif; ?>
+</script>

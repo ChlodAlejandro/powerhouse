@@ -1,7 +1,7 @@
 ![This project is currently in development. It may not be working as of now. Please wait until a stable version has been built and released.](https://raw.githubusercontent.com/ChlodAlejandro/powerhouse/master/.github/RESOURCES/powerhouse-indev.png)
-***This project is currently non-functional. It does not yet have download or upload capabilities.***
+***This project is currently semi-functional. Downloads and uploads have not yet been integrated into the interface, but its API endpoints are now available..***
 
-Powerhouse is a customizable PHP-based file distribution program.
+Powerhouse is a modern and customizable PHP-based file distribution program.
 
 ![Powerhouse banner](https://raw.githubusercontent.com/ChlodAlejandro/powerhouse/master/.github/RESOURCES/powerhouse-banner-narrow-on_blue.png)
 

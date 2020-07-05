@@ -1,5 +1,15 @@
 <?php
 /**
+ * POWERHOUSE_ENV_VERSION
+ *
+ * The version of this file. Changes in the version code indicate
+ * a breaking difference. In most cases, Powerhouse should
+ * automatically fix the old env.php file to conform to the newer
+ * version.
+ */
+define("POWERHOUSE_ENV_VERSION", 1);
+
+/**
  * POWERHOUSE_CONFIGURED
  *
  * If you want to use this file and get straight to using
@@ -97,16 +107,6 @@ define("POWERHOUSE_FILES_NOHIDDEN", false);
 define("POWERHOUSE_FILES_NODOWNLOADS", false);
 
 /**
- * POWERHOUSE_FILES_NOUPLOADS
- *
- * This prevents files from being uploaded.
- *
- * Default: false
- * Suggested: false
- */
-define("POWERHOUSE_FILES_NOUPLOADS", false);
-
-/**
  * POWERHOUSE_FILES_PRIVILEGED
  *
  * Enable user privileges. This option will enable
@@ -124,24 +124,55 @@ define("POWERHOUSE_FILES_NOUPLOADS", false);
  */
 define("POWERHOUSE_FILES_PRIVILEGED", false);
 
-// POWERHOUSE SECURITY CONFIGURATION.
+// POWERHOUSE UPLOAD MANAGEMENT
 
 /**
- * POWERHOUSE_SECURITY_ALLOWROOT
+ * POWERHOUSE_UPLOADS_ENABLED
  *
- * WARNING: UNDER NO CIRCUMSTANCES SHOULD YOU ENABLE THIS
- * UNLESS YOUR SYSTEM IS HEAVILY RESTRICTED AND YOU
- * UNDERSTAND THE ISSUES THAT DISABLING THIS OPTION
- * MAY CAUSE.
- *
- * Allows Powerhouse to use the root as a valid directory.
- * For Unix-based systems, this would be /, and for Windows
- * based-systems, this would be the top folder of the drive
- * where Powerhouse is installed.
- *
- * This is an EXTREMELY dangerous option. Enable with caution.
+ * Enabling this option will enable uploads for this
+ * Powerhouse option. Disabling it will prevent anyone
+ * from uploading. If you wish to restrict who gets to
+ * upload, use security options instead.
  *
  * Default: false
  * Suggested: false
  */
-define("POWERHOUSE_SECURITY_ALLOWROOT", false);
+define("POWERHOUSE_UPLOADS_ENABLED", true);
+
+/**
+ * POWERHOUSE_UPLOADS_PROGRESSTOKEN
+ *
+ * The name of the parameter where the upload progress
+ * token is stored. If you wish to change this option
+ * manually, change its value in the .htaccess file for
+ * the top-level Powerhouse directory (the same
+ * directory this file is in.)
+ *
+ * Default: PH_UPLOAD_PROGRESS_TOKEN
+ */
+define("POWERHOUSE_UPLOADS_PROGRESSTOKEN", ini_get("session.upload_progress.name"));
+
+/**
+ * POWERHOUSE_UPLOADS_MAXSIZE
+ *
+ * The maximum file size allowed for one file.
+ * If you wish to change this option manually,
+ * change its value in the .htaccess file for the
+ * top-level Powerhouse directory (the same directory
+ * this file is in.)
+ *
+ * Default: 1000000000 (1 GB)
+ */
+define("POWERHOUSE_UPLOADS_MAXSIZE", intval(ini_get("upload_max_filesize")));
+
+/**
+ * POWERHOUSE_UPLOADS_SIMULTANEOUS
+ *
+ * The maximum amount of simultaneous uploads
+ * per request allowed. This is 1 by default, but
+ * can be increased, as long as the interface
+ * supports multiple-file uploads.
+ *
+ * Default: 1
+ */
+define("POWERHOUSE_UPLOADS_SIMULTANEOUS", intval(ini_get("max_file_uploads")));

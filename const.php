@@ -30,6 +30,16 @@ define("POWERHOUSE_VERSION", "1.0.0-beta-0001");
 define("POWERHOUSE_DEV_PAGE", "https://github.com/ChlodAlejandro/powerhouse");
 
 /**
+ * POWERHOUSE_DEV_REPOSITORY
+ *
+ * The repository of Powerhouse. Scripts that need to download other scripts
+ * will usually grab their files from here.
+ *
+ * This is usually the GitHub repository.
+ **/
+define("POWERHOUSE_DEV_REPOSITORY", "https://raw.githubusercontent.com/ChlodAlejandro/powerhouse/master");
+
+/**
  * POWERHOUSE_DIR_ROOT
  *
  * The root of the Powerhouse directory, relative to the file
@@ -58,4 +68,7 @@ define("POWERHOUSE_DIR_ROOT", __DIR__);
  */
 define("POWERHOUSE_SECURITY_ALLOWROOT", false);
 
-require(__DIR__ . "/system/verify_env.php");
+// Disable `env.php` loading if installing or troubleshooting.
+if (!defined("POWERHOUSE_TROUBLESHOOTING")
+    && !defined("POWERHOUSE_INSTALLING"))
+    require(__DIR__ . "/system/load_env.php");

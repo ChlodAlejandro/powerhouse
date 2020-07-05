@@ -1,0 +1,43 @@
+<?php
+
+function showErrorUI($additionalData = null) {?>
+<img id="banner" src="../images/powerhouse-banner.png" alt="Powerhouse banner">
+
+<h1 style="font-size: 32px; margin-top: 0;">Download Failed</h1>
+<div class="intro_message">
+	<p>Powerhouse failed to download the default <code>env.php</code> file. This may be due to a connection issue, or a drive issue. Please make sure that your web server can properly access the internet.</p>
+	<p>Otherwise, you can just download the default <code>env.php</code> file manually from the <a href="<?php echo POWERHOUSE_DEV_REPOSITORY . "/env.default.php"; ?>">Powerhouse repository</a>, and place it at the root directory, where <code>const.php</code> is found.</p>
+	<?php if ($additionalData != null) echo "<p>" . $additionalData . "</p>" ?>
+	<button id="retry" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-button--raised">Try Again</button>
+</div>
+
+<script>
+	document.getElementById("retry").addEventListener("click", () => {
+		var content = document.getElementById("content");
+		content.classList.add("fade-out");
+		content.addEventListener("animationend", () => {
+			loadWidget("download-default");
+		});
+	})
+</script>
+<?php}
+
+if (!file_exists(__DIR__  . "/../env.default.php")) {
+    $defaultEnv = file_get_contents(POWERHOUSE_DEV_REPOSITORY . "/env.default.php");
+
+    if (!$defaultEnv) {
+    	showErrorUI("Can't download default <code>env.php</code> file.");
+	} else {
+    	if (!is_writable(__DIR__ . "/../env.default.php")) {
+            showErrorUI("<code>/env.default.php</code> is unwritable. Check if permissions are valid.");
+		} else {
+    		$envWrite = file_put_contents(__DIR__ . "/../env.default.php", $defaultEnv);
+    		if (!$envWrite) {
+    			showErrorUI("Failed to write to <code>/env.default.php</code>. Check if permissions are valid or if disk space is enough.");
+			} else {
+				header("Location: install.widget");
+				exit();
+			}
+		}
+    }
+} else header("Location: install.widget");

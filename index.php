@@ -1,4 +1,9 @@
 <?php
+if (!file_exists("env.php")) {
+    header("Location: setup");
+    exit();
+}
+
 require_once __DIR__ . "/const.php";
 
 // login page. soon.

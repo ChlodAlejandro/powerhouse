@@ -10,5 +10,6 @@ files/
 
 .idea/
 
-# Installation configuration
-env.php
+# Configuration files (besides default)
+env*.php
+!env.default.php

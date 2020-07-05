@@ -1,0 +1,177 @@
+@import url("fonts.css");
+
+:root {
+
+    --main-bg-color: #0e2231;
+    --main-bg-accent: #17364e;
+    --main-accent-color: rgb(83,109,254);
+    --main-accent-darker: rgb(60, 80, 186);
+
+    --main-text-color: white;
+    --main-action-text-color: white;
+
+    --dialog-container-bg: rgba(0, 0, 0, 0.5);
+    --dialog-bg: #eee;
+    --dialog-text-color: black;
+
+}
+
+html, body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+body {
+    background-color: var(--main-accent-color);
+
+    font-family: "Heebo", "Arial", sans-serif;
+    color: var(--main-text-color);
+
+    transition: all 0.25s ease;
+}
+
+body.white {
+    background-color: white;
+}
+
+body.install {
+    overflow: hidden;
+}
+
+h1, p {
+    font-family: "Heebo", "Arial", sans-serif !important;
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+@keyframes fade-out {
+    from { opacity: 1 }
+    to { opacity: 0 }
+}
+
+.intro_message {
+    width: 50%;
+    text-align: center;
+}
+
+#content {
+    box-sizing: border-box;
+    min-height: 100vh;
+
+    transition: all 0.25s ease;
+}
+
+#content.centered {
+    height: 100%;
+
+    padding: 64px 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#content.fade-out {
+    opacity: 0;
+    animation: fade-out 0.25s ease;
+}
+
+#content #banner {
+    width: 50%;
+    height: auto;
+}
+
+#header {
+    height: 48px;
+    padding: 4px 0;
+    text-align: center;
+    background-color: var(--main-accent-color);
+}
+
+@keyframes banner-intro {
+    from {bottom: 10vh}
+    to {bottom: 0}
+}
+
+#header #banner {
+    width: auto;
+    height: 48px;
+
+    position: relative;
+
+    animation: banner-intro 0.25s ease;
+}
+
+#progress {
+    width: 100%;
+}
+
+#workspace_container {
+    height: 100%;
+    width: 100%;
+}
+
+#workspace_container > div {
+    display: inline-block;
+}
+
+#steps {
+    min-height: calc(100vh - 60px);
+    height: 100%;
+    width: 300px;
+
+    float: left;
+
+    background-color: var(--main-accent-darker)
+}
+
+#steps ol {
+    margin: 0;
+    padding: 0;
+}
+
+#steps ol li {
+    padding: 16px 0 16px 30px;
+}
+
+#steps ol li.active {
+    background-color: rgba(255,255,255,0.3);
+}
+
+#workspace {
+    width: calc(100vw - 300px);
+    height: calc(100vh - 60px);
+    overflow-y: scroll;
+}
+
+#workspace > div {
+    box-sizing: border-box;
+    width: 100%;
+    height: calc(100vh - 60px);
+    padding: 20px;
+}
+
+#workspace > div h1 {
+    margin-top: 0;
+    font-size: xx-large;
+}
+
+#workspace > div h3 {
+    margin: 0;
+    font-size: x-large;
+}
+
+#workspace > div .mdl-textfield {
+    min-width: 50%;
+}
+
+#workspace > div h1,
+#workspace > div h3,
+#workspace > div p,
+#workspace > div input {
+    color: black !important;
+}

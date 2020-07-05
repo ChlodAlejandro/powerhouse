@@ -27,11 +27,6 @@ class APIException
             "message_short" => "Missing Argument",
             "message_long" => "The request is missing a required argument."
         ],
-        "400-UCF" => [
-            "http_code" => 400,
-            "message_short" => "Upload Conflict",
-            "message_long" => "The file being uploaded conflicts with another file already on the server."
-        ],
         "400-UPT" => [
             "http_code" => 400,
             "message_short" => "Partial Upload",
@@ -42,10 +37,25 @@ class APIException
             "message_short" => "Missing Argument",
             "message_long" => "The request is missing a required argument. No file was provided to the uploader."
         ],
+        "403-DNA" => [
+            "http_code" => 403,
+            "message_short" => "Downloads Disabled",
+            "message_long" => "File downloads have been disabled by the server administrator."
+        ],
+        "403-UNA" => [
+            "http_code" => 403,
+            "message_short" => "Uploads Disabled",
+            "message_long" => "File uploads have been disabled by the server administrator."
+        ],
         "405" => [
             "http_code" => 405,
             "message_short" => "Method Not Allowed",
             "message_long" => "The request method is known by the server but has been disabled and cannot be used."
+        ],
+        "409-UCF" => [
+            "http_code" => 409,
+            "message_short" => "Upload Conflict",
+            "message_long" => "The file being uploaded conflicts with another file already on the server."
         ],
         "413-UTL" => [
             "http_code" => 413,

