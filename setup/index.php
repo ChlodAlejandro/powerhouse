@@ -1,4 +1,5 @@
 <?php
+exit("The installer has not yet been completed.");
 $installed = file_exists(__DIR__ . "/../env.php");
 ?>
 <!doctype html>

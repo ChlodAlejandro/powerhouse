@@ -79,10 +79,12 @@ document.body.classList.add("install");
 			<h1>Step 2. Configure basic Powerhouse options</h1>
 
 			<p>Here, you can modify basic Powerhouse options, such as the theme to use.</p>
-			<p>If you wish to use a theme different from the default, </p>
+
 
 			<hr/>
-
+			<h3>Theme</h3>
+			<p>If you wish to use a theme different from the default, place the theme files in the <code>themes</code> folder prior to running the installer.</p>
+			<p>Select the theme you wish to use below.</p>
 		</div>
     </div>
 </div>
